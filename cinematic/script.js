@@ -176,6 +176,161 @@
     });
   }
 
+  /* ----------------------------------------------------------------------
+     Ambient soundscape (Web Audio — synthesised, no asset)
+     ---------------------------------------------------------------------- */
+  function initSound() {
+    var btn = $('#soundToggle');
+    if (!btn) return;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) { btn.style.display = 'none'; return; }
+
+    var ctx = null, master = null, playing = false, built = false;
+
+    function build() {
+      ctx = new AC();
+      var comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -22; comp.ratio.value = 3; comp.connect(ctx.destination);
+      master = ctx.createGain(); master.gain.value = 0; master.connect(comp);
+
+      /* warm pad — detuned oscillators through a slowly sweeping lowpass */
+      var pad = ctx.createGain(); pad.gain.value = 0.17; pad.connect(master);
+      var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 560; lp.Q.value = 0.7; lp.connect(pad);
+      [110, 164.81, 220, 277.18].forEach(function (f, i) {
+        var o = ctx.createOscillator();
+        o.type = i % 2 ? 'sine' : 'triangle';
+        o.frequency.value = f; o.detune.value = (i - 1.5) * 5;
+        var g = ctx.createGain(); g.gain.value = 0.26 / (i + 1);
+        o.connect(g); g.connect(lp); o.start();
+        var drift = ctx.createOscillator(); drift.frequency.value = 0.03 + i * 0.019;
+        var dg = ctx.createGain(); dg.gain.value = 3.6;
+        drift.connect(dg); dg.connect(o.detune); drift.start();
+      });
+      var sweep = ctx.createOscillator(); sweep.frequency.value = 0.021;
+      var sg = ctx.createGain(); sg.gain.value = 170;
+      sweep.connect(sg); sg.connect(lp.frequency); sweep.start();
+
+      /* airy texture — softly breathing band-passed noise */
+      var buf = ctx.createBuffer(1, ctx.sampleRate * 4, ctx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var s = 0; s < d.length; s++) d[s] = (Math.random() * 2 - 1) * 0.5;
+      var noise = ctx.createBufferSource(); noise.buffer = buf; noise.loop = true;
+      var bp = ctx.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1350; bp.Q.value = 0.5;
+      var ng = ctx.createGain(); ng.gain.value = 0.05;
+      noise.connect(bp); bp.connect(ng); ng.connect(master); noise.start();
+      var breath = ctx.createOscillator(); breath.frequency.value = 0.08;
+      var bg = ctx.createGain(); bg.gain.value = 0.03;
+      breath.connect(bg); bg.connect(ng.gain); breath.start();
+
+      built = true;
+    }
+
+    function fade(to, t) {
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
+      master.gain.linearRampToValueAtTime(to, ctx.currentTime + t);
+    }
+
+    function setPlaying(on) {
+      playing = on;
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+
+    function toggle() {
+      if (!built) build();
+      if (ctx.state === 'suspended') ctx.resume();
+      setPlaying(!playing);
+      fade(playing ? 0.62 : 0, playing ? 2.6 : 0.7);
+      try { localStorage.setItem('aoba-sound', playing ? '1' : '0'); } catch (e) {}
+    }
+
+    btn.addEventListener('click', toggle);
+
+    doc.addEventListener('visibilitychange', function () {
+      if (!built || !playing) return;
+      fade(doc.hidden ? 0 : 0.62, 0.5);
+    });
+
+    /* resume a previous "on" choice at the first interaction (autoplay policy) */
+    try {
+      if (localStorage.getItem('aoba-sound') === '1') {
+        var kick = function () {
+          toggle();
+          window.removeEventListener('pointerdown', kick);
+          window.removeEventListener('keydown', kick);
+        };
+        window.addEventListener('pointerdown', kick, { once: true });
+        window.addEventListener('keydown', kick, { once: true });
+      }
+    } catch (e) {}
+  }
+
+  /* ----------------------------------------------------------------------
+     Back-to-top button
+     ---------------------------------------------------------------------- */
+  function initBackToTop(lenis) {
+    var btn = $('#toTop');
+    if (!btn) return;
+    var shown = false;
+    function upd() {
+      var want = (window.scrollY || window.pageYOffset) > window.innerHeight * 0.85;
+      if (want !== shown) { shown = want; btn.classList.toggle('show', want); }
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd, { passive: true });
+    upd();
+    btn.addEventListener('click', function () {
+      if (lenis) lenis.scrollTo(0, { duration: 1.4 });
+      else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ----------------------------------------------------------------------
+     Auto-play — hands-free scroll from top to bottom
+     ---------------------------------------------------------------------- */
+  function initAutoScroll(lenis) {
+    var btn = $('#autoPlay');
+    if (!btn) return;
+    var running = false, raf = 0, last = 0;
+
+    function maxY() { return Math.max(0, doc.documentElement.scrollHeight - window.innerHeight); }
+    function curY() { return lenis ? lenis.scroll : (window.scrollY || window.pageYOffset); }
+
+    function setState(on) {
+      running = on;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      body.classList.toggle('autoscrolling', on);
+    }
+    function stop() { if (!running) return; setState(false); cancelAnimationFrame(raf); }
+    function start() {
+      if (running || curY() >= maxY() - 4) return;
+      setState(true);
+      last = performance.now();
+      var speed = Math.min(240, Math.max(72, maxY() / 100));   // ~100s end-to-end
+      (function step(now) {
+        if (!running) return;
+        var dt = Math.min(0.048, (now - last) / 1000); last = now;
+        var next = curY() + speed * dt;
+        if (next >= maxY() - 2) {
+          if (lenis) lenis.scrollTo(maxY(), { immediate: true }); else window.scrollTo(0, maxY());
+          return stop();
+        }
+        if (lenis) lenis.scrollTo(next, { immediate: true }); else window.scrollTo(0, next);
+        raf = requestAnimationFrame(step);
+      })(last);
+    }
+
+    btn.addEventListener('click', function () { running ? stop() : start(); });
+
+    window.addEventListener('wheel', function () { stop(); }, { passive: true });
+    window.addEventListener('touchstart', function () { stop(); }, { passive: true });
+    window.addEventListener('keydown', function (e) {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' ', 'Spacebar'].indexOf(e.key) !== -1) stop();
+    });
+    doc.addEventListener('click', function (e) { if (running && !btn.contains(e.target)) stop(); });
+  }
+
   /* ======================================================================
      LIGHT MODE  (reduced motion or GSAP unavailable)
      ====================================================================== */
@@ -186,6 +341,9 @@
     initNav(null);
     initReveals();
     initShop();
+    initSound();
+    initBackToTop(null);
+    initAutoScroll(null);
 
     // reveal the cinematic copy that would otherwise be animated
     $$('.act-reveal, .act-copy .line, .statement-words span, .q-card').forEach(function (el) {
@@ -217,6 +375,9 @@
     initNav(lenis);
     initReveals();
     initShop();
+    initSound();
+    initBackToTop(lenis);
+    initAutoScroll(lenis);
 
     ambient($('#hero-particles'), { count: 46, seed: 11, colors: ['rgba(230,192,121,', 'rgba(120,150,132,'] });
     ambient($('#final-particles'), { count: 32, seed: 23, colors: ['rgba(230,192,121,', 'rgba(150,175,158,'] });
