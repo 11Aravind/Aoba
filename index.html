@@ -3,1086 +3,418 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AOBA — Pure. Natural. Authentic. | Kerala Spices & Foods</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Discover AOBA — Single-origin Black Pepper, High-Curcumin Turmeric, and King Cashews sourced directly from the fertile agricultural estates of Kerala.">
-  <meta name="keywords" content="AOBA, Kerala spices, black pepper 500g, turmeric powder 500g, cashew nuts 500g, organic Kerala spices, luxury Indian food brand">
-  <meta name="theme-color" content="#07150e">
+  <title>AOBA — A Journey from Nature to Your Kitchen</title>
+  <meta name="description" content="AOBA — Pure. Natural. Authentic. A cinematic journey from Kerala's nature to your kitchen. Single-origin Black Pepper, Turmeric and Cashew Nuts.">
+  <meta name="theme-color" content="#0a2416">
 
-  <!-- OpenGraph / Social Sharing -->
-  <meta property="og:type" content="website">
   <meta property="og:title" content="AOBA — Pure. Natural. Authentic.">
-  <meta property="og:description" content="From the rich agricultural lands of Kerala to your kitchen. Premium, authentic spices and nuts.">
-  <meta property="og:image" content="assets/aoba-logo.png">
+  <meta property="og:description" content="A journey from Kerala's nature to your kitchen.">
+  <meta property="og:image" content="assets/aoba-logo-hero.png">
 
-  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Core Luxury Stylesheet (Directly linked for 100% reliable styling) -->
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="preload" as="image" href="assets/black-pepper-500g.png">
+  <link rel="preload" as="image" href="assets/turmeric-500g.png">
+  <link rel="preload" as="image" href="assets/cashew-500g.png">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="is-loading">
 
-  <!-- Top Reading & Exploration Progress Indicator -->
-  <div class="scroll-progress-container" aria-hidden="true">
-    <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
-  </div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
 
-  <!-- Custom Luxury Magnetic Cursor -->
-  <div class="custom-cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-  <div class="custom-cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-
-  <!-- Subtle Film Grain Overlay -->
-  <div class="grain-overlay" aria-hidden="true"></div>
-
-  <!-- Generative Ambient Particles & Botanical Dust Canvas -->
-  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
-
-  <!-- Sticky Luxury Navigation -->
-  <header class="site-header" id="site-header">
-    <div class="nav-container">
-      <a href="#hero" class="nav-brand" aria-label="AOBA Home">
-        <img src="assets/aoba-logo-hero.png" alt="AOBA Logo" class="nav-brand-img">
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a href="#hero" class="nav-logo" aria-label="AOBA home" data-scroll>
+        <img src="assets/aoba-logo-hero.png" alt="AOBA">
       </a>
-
-      <nav aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#hero" class="nav-link">Home</a></li>
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#collection" class="nav-link">Collection</a></li>
-          <li><a href="agro.html" class="nav-link" style="color: #eec658; font-weight: 600;">Agro Store ↗</a></li>
-          <li><a href="demo.html" class="nav-link">Brand Film</a></li>
-          <li><a href="#terroir" class="nav-link">Terroir & Notes</a></li>
-          <li><a href="#farm-story" class="nav-link">Farm Journey</a></li>
-          <li><a href="#brand-story" class="nav-link">Our Story</a></li>
-          <li><a href="#recipes" class="nav-link">Pairings</a></li>
-          <li><a href="#quality" class="nav-link">Quality</a></li>
-        </ul>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#hero" data-scroll>Home</a>
+        <a href="#shop" data-scroll>Products</a>
+        <a href="#farm" data-scroll>Our Story</a>
+        <a href="#final" data-scroll>Contact</a>
       </nav>
-
-      <div class="nav-actions">
-        <!-- Ambient Soundscape Generator Button -->
-        <button id="sound-toggle-btn" class="sound-toggle-btn" aria-label="Toggle Kerala Rainforest Soundscape" title="Toggle Kerala Rainforest Ambient Audio">
-          <div class="sound-bars" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <span>Rainforest</span>
+      <div class="nav-right">
+        <button class="nav-auto" id="autoPlay" type="button" aria-pressed="false" aria-label="Auto-play the story — scroll from top to bottom">
+          <span class="na-track"><span class="na-thumb"></span></span>
+          <span class="na-label">Auto-play</span>
         </button>
-
-        <!-- Interactive Cart Drawer Trigger -->
-        <button class="cart-toggle-btn" data-action="open-cart" aria-label="View Shopping Basket">
-          <span>Basket</span>
-          <span class="cart-badge" id="cart-count-badge">1</span>
-        </button>
-
-        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Mobile Menu">
-          ☰
+        <a href="#shop" class="btn btn-solid nav-cta" data-scroll>Shop Now</a>
+        <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <main id="main-content">
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#hero" data-scroll>Home</a>
+    <a href="#shop" data-scroll>Products</a>
+    <a href="#farm" data-scroll>Our Story</a>
+    <a href="#final" data-scroll>Contact</a>
+    <a href="#shop" data-scroll>Shop Now</a>
+    <div class="mm-foot">Pure · Natural · Authentic</div>
+  </nav>
 
-    <!-- ==========================================================================
-         SECTION 1: HERO SECTION — ENHANCED CINEMATIC BANNER
-         ========================================================================== -->
-    <section class="hero-section" id="hero">
-      <!-- High-res Kerala Landscape backdrop with Ken Burns zoom animation -->
-      <img src="assets/kerala-estate.jpg" alt="Kerala Misty Spice Estate Backdrop" class="hero-backdrop-img">
-      <div class="hero-backdrop-gradient"></div>
-      <div class="hero-sunbeam" aria-hidden="true"></div>
+  <main>
 
-      <!-- Floating 3D botanical leaves -->
-      <svg class="hero-leaf hero-leaf-1" viewBox="0 0 100 100" fill="currentColor">
-        <path d="M10,90 Q40,10 90,20 Q60,80 10,90 Z" fill="#2d6f4c"/>
-      </svg>
-      <svg class="hero-leaf hero-leaf-2" viewBox="0 0 100 100" fill="currentColor">
-        <path d="M15,85 Q50,15 85,15 Q65,75 15,85 Z" fill="#38855c"/>
-      </svg>
-      <svg class="hero-leaf hero-leaf-3" viewBox="0 0 100 100" fill="currentColor">
-        <path d="M10,80 Q45,20 80,10 Q60,70 10,80 Z" fill="#1b4931"/>
-      </svg>
+    <!-- ============ 01 · CINEMATIC HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-veil" id="heroVeil" aria-hidden="true"></div>
+      <canvas id="hero-particles" aria-hidden="true"></canvas>
 
-      <div class="hero-content">
-        <!-- Live Kerala Terroir HUD Strip -->
-        <div class="hero-live-terroir">
-          <div class="terroir-pill-live">
-            <span class="terroir-live-dot"></span>
-            <span class="terroir-estate">Wayanad High Terroir</span>
-            <span class="terroir-stat">950m ASL</span>
-            <span class="terroir-divider">·</span>
-            <span class="terroir-stat">22°C Misty</span>
-            <span class="terroir-divider">·</span>
-            <span class="terroir-badge">2026 Fresh Harvest</span>
-          </div>
-        </div>
+      <svg class="hero-leaf lf1" viewBox="0 0 100 100" aria-hidden="true"><path d="M8,92 Q42,8 92,18 Q62,84 8,92 Z" fill="currentColor"/></svg>
+      <svg class="hero-leaf lf2" viewBox="0 0 100 100" aria-hidden="true"><path d="M12,88 Q52,12 88,14 Q66,78 12,88 Z" fill="currentColor"/></svg>
+      <svg class="hero-leaf lf3" viewBox="0 0 100 100" aria-hidden="true"><path d="M10,84 Q46,18 84,10 Q60,74 10,84 Z" fill="currentColor"/></svg>
 
-        <!-- Origin Badge Pill -->
-        <div class="hero-origin-pill">
-          <span class="origin-pulse-dot"></span>
-          <span>100% Single-Origin · Wayanad & Alleppey</span>
-        </div>
-
-        <div class="hero-logo-wrap" id="hero-logo-wrap">
-          <div class="hero-logo-glow" aria-hidden="true"></div>
-          <div class="hero-crest-ring" aria-hidden="true"></div>
-          <img src="assets/aoba-logo-hero.png" alt="AOBA - Pure. Natural. Authentic." class="hero-logo-img" id="hero-logo-img">
-        </div>
-
-        <h1 class="hero-tagline">Pure. Natural. Authentic.</h1>
-        <p class="hero-subtext">From the rich agricultural lands of Kerala to your kitchen.</p>
-
-        <!-- Highlights Strip -->
-        <div class="hero-highlights-strip">
-          <div class="hero-highlight-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Single Estate Harvest</span>
-          </div>
-          <div class="hero-highlight-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Sun-Cured on Bamboo</span>
-          </div>
-          <div class="hero-highlight-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Zero Additives or Fillers</span>
-          </div>
-        </div>
-
-        <div class="hero-cta-group">
-          <a href="#experience" class="btn btn-primary hero-main-btn">Explore Products</a>
-          <a href="#terroir" class="btn btn-secondary">Sensory Compass</a>
-        </div>
+      <div class="hero-inner">
+        <img class="hero-logo" id="heroLogo" src="assets/aoba-logo-hero.png" alt="AOBA">
+        <h1 class="hero-tag" id="heroTag" aria-label="Pure. Natural. Authentic.">
+          <span class="w">Pure.</span> <span class="w">Natural.</span> <span class="w">Authentic.</span>
+        </h1>
+        <p class="hero-sub" id="heroSub">A journey from nature to your kitchen.</p>
       </div>
 
-      <div class="hero-scroll-cue" aria-hidden="true">
-        <span>Scroll To Explore</span>
-        <div class="scroll-line-anim"></div>
+      <div class="hero-cue" id="heroCue" aria-hidden="true">
+        <span>Scroll to begin</span>
+        <span class="dot"></span>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTIONS 2, 3, 4: SCROLL-DRIVEN PRODUCT EXPERIENCE (Apple-Style Pinned Stage)
-         ========================================================================== -->
-    <section class="experience-pinned-section" id="experience">
-      <div class="product-stage">
-        <!-- Floating Stage Switcher Tabs -->
-        <div class="stage-top-switch">
-          <button class="stage-tab-pill active" data-step="0">01 Black Pepper</button>
-          <button class="stage-tab-pill" data-step="1">02 Turmeric</button>
-          <button class="stage-tab-pill" data-step="2">03 Cashews</button>
+    <!-- ============ 02–04 · BLACK PEPPER ACT ============ -->
+    <section class="act act-pepper" id="act-pepper">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="act-bg-alt"></div>
+
+        <div class="bits" id="pepperBits" aria-hidden="true"></div>
+
+        <div class="packet-shadow" id="pepperShadow" aria-hidden="true"></div>
+        <div class="packet" id="pepperPacket">
+          <img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper 500 g packet">
         </div>
 
-        <div class="stage-backdrop pepper-mode" aria-hidden="true"></div>
-        <div class="product-aura-glow aura-pepper" aria-hidden="true"></div>
-
-        <!-- Ambient Orbiting Spice Elements -->
-        <div class="orbit-spice-accent orbit-pepper-berry-1" aria-hidden="true"></div>
-        <div class="orbit-spice-accent orbit-pepper-berry-2" aria-hidden="true"></div>
-
-        <div class="stage-container">
-          
-          <!-- Dynamic Copy Cards (Active swapped on scroll progress) -->
-          <div class="product-copy-col">
-            
-            <!-- 1. Black Pepper Reveal Copy -->
-            <article class="product-copy-card active" id="copy-pepper">
-              <div class="product-index-tag">
-                <span class="tag-dot"></span>
-                <span>Single Origin Spices · 01</span>
-              </div>
-              <h2 class="product-title">AOBA Black Pepper</h2>
-              <div class="product-subtitle">Bold flavour. Naturally grown.</div>
-              <p class="product-desc">
-                Premium black pepper sourced from the rich agricultural lands of Kerala. Sun-cured on woven bamboo mats to lock in the volatile oils, yielding deep woody spice notes and peerless culinary heat.
-              </p>
-              <div class="product-specs">
-                <span class="spec-pill">🌿 Tellicherry Grade</span>
-                <span class="spec-pill">📍 Wayanad Highlands</span>
-                <span class="spec-pill">⚖️ 500 g</span>
-              </div>
-              <!-- Real-time Laboratory Compound Matrix -->
-              <div class="stage-compound-grid">
-                <div class="stage-compound-item">
-                  <div class="compound-val">6.8<span class="compound-unit">%</span></div>
-                  <div class="compound-label">Piperine Content</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">3.4<span class="compound-unit">%</span></div>
-                  <div class="compound-label">Volatile Oils</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">950<span class="compound-unit">m</span></div>
-                  <div class="compound-label">Highland ASL</div>
-                </div>
-              </div>
-              <div class="product-actions">
-                <div class="price-tag" id="stage-price-pepper">₹480</div>
-                <button class="btn btn-primary" data-action="add-to-cart" data-product-id="pepper-500g">
-                  Add to Basket
-                </button>
-                <button class="btn btn-secondary" data-action="quick-view" data-product-id="pepper-500g">
-                  View Details →
-                </button>
-              </div>
-            </article>
-
-            <!-- 2. Turmeric Powder Reveal Copy -->
-            <article class="product-copy-card" id="copy-turmeric">
-              <div class="product-index-tag">
-                <span class="tag-dot"></span>
-                <span>Sun-Dried Curcumin · 02</span>
-              </div>
-              <h2 class="product-title">AOBA Turmeric</h2>
-              <div class="product-subtitle">Golden goodness from nature.</div>
-              <p class="product-desc">
-                Pure, naturally vibrant turmeric powder made for everyday cooking. Hand-harvested rhizomes boasting 5.2% natural curcumin potency, free from adulteration, synthetic dyes, or irradiation.
-              </p>
-              <div class="product-specs">
-                <span class="spec-pill">☀️ 5.2% Curcumin</span>
-                <span class="spec-pill">📍 Alleppey Belt</span>
-                <span class="spec-pill">⚖️ 500 g</span>
-              </div>
-              <!-- Real-time Laboratory Compound Matrix -->
-              <div class="stage-compound-grid">
-                <div class="stage-compound-item">
-                  <div class="compound-val">5.2<span class="compound-unit">%</span></div>
-                  <div class="compound-label">Active Curcumin</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">98<span class="compound-unit">%</span></div>
-                  <div class="compound-label">Natural Pigment</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">14<span class="compound-unit">d</span></div>
-                  <div class="compound-label">Bamboo Sun-Cure</div>
-                </div>
-              </div>
-              <div class="product-actions">
-                <div class="price-tag" id="stage-price-turmeric">₹390</div>
-                <button class="btn btn-primary" data-action="add-to-cart" data-product-id="turmeric-500g">
-                  Add to Basket
-                </button>
-                <button class="btn btn-secondary" data-action="quick-view" data-product-id="turmeric-500g">
-                  View Details →
-                </button>
-              </div>
-            </article>
-
-            <!-- 3. Cashew Nuts Reveal Copy -->
-            <article class="product-copy-card" id="copy-cashew">
-              <div class="product-index-tag">
-                <span class="tag-dot"></span>
-                <span>Heritage Orchard Harvest · 03</span>
-              </div>
-              <h2 class="product-title">AOBA Cashew Nuts</h2>
-              <div class="product-subtitle">Naturally rich. Simply delicious.</div>
-              <p class="product-desc">
-                Carefully selected cashews packed to preserve their natural taste and quality. Hand-graded jumbo W-180 whole nuts with a delicate natural creaminess, oven-roasted in small artisanal batches.
-              </p>
-              <div class="product-specs">
-                <span class="spec-pill">🌰 King W-180 Whole</span>
-                <span class="spec-pill">📍 Kollam Coast</span>
-                <span class="spec-pill">⚖️ 500 g</span>
-              </div>
-              <!-- Real-time Laboratory Compound Matrix -->
-              <div class="stage-compound-grid">
-                <div class="stage-compound-item">
-                  <div class="compound-val">W-180</div>
-                  <div class="compound-label">King Jumbo Grade</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">100<span class="compound-unit">%</span></div>
-                  <div class="compound-label">Whole Kernels</div>
-                </div>
-                <div class="stage-compound-item">
-                  <div class="compound-val">68<span class="compound-unit">°C</span></div>
-                  <div class="compound-label">Artisan Slow Roast</div>
-                </div>
-              </div>
-              <div class="product-actions">
-                <div class="price-tag" id="stage-price-cashew">₹650</div>
-                <button class="btn btn-primary" data-action="add-to-cart" data-product-id="cashew-500g">
-                  Add to Basket
-                </button>
-                <button class="btn btn-secondary" data-action="quick-view" data-product-id="cashew-500g">
-                  View Details →
-                </button>
-              </div>
-            </article>
-
-          </div>
-
-          <!-- Product Pouch Transformation Visual Column -->
-          <div class="product-visual-col">
-            <div class="product-pouch-frame" id="pouch-frame">
-              <div class="pouch-specular-glow" aria-hidden="true"></div>
-              <div class="pouch-shadow-3d" aria-hidden="true"></div>
-              <!-- Black Pepper Pouch -->
-              <img 
-                src="assets/black-pepper-500g.png" 
-                alt="AOBA Black Pepper 500g pouch" 
-                class="product-package-layer" 
-                id="pouch-pepper"
-              >
-              <!-- Turmeric Pouch -->
-              <img 
-                src="assets/turmeric-500g.png" 
-                alt="AOBA Turmeric Powder 500g pouch" 
-                class="product-package-layer" 
-                id="pouch-turmeric"
-              >
-              <!-- Cashew Pouch -->
-              <img 
-                src="assets/cashew-500g.png" 
-                alt="AOBA Cashew Nuts 500g pouch" 
-                class="product-package-layer" 
-                id="pouch-cashew"
-              >
-            </div>
-          </div>
-
+        <div class="act-copy" id="pepperCopy" aria-hidden="true">
+          <p class="line" data-line="0">It starts with a single peppercorn.</p>
+          <p class="line" data-line="1">Grown with nature.</p>
+          <p class="line" data-line="2">Crafted for flavour.</p>
         </div>
 
-        <!-- Stage Step Navigation Indicator -->
-        <nav class="stage-progress-nav" aria-label="Product Showcase Steps">
-          <button class="stage-step-dot active" data-step="0" data-label="Black Pepper" aria-label="Go to Black Pepper"></button>
-          <button class="stage-step-dot" data-step="1" data-label="Turmeric" aria-label="Go to Turmeric"></button>
-          <button class="stage-step-dot" data-step="2" data-label="Cashews" aria-label="Go to Cashews"></button>
-        </nav>
+        <div class="act-copy act-reveal-wrap">
+          <div class="act-reveal" id="pepperReveal">
+            <span class="eyebrow">Single Origin · Wayanad</span>
+            <h2>AOBA Black Pepper</h2>
+            <div class="tagline">Bold flavour. Naturally authentic.</div>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Black Pepper <span class="arw">&rarr;</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTION 5: PRODUCT COLLECTION (Luxury Brand Showcase)
-         ========================================================================== -->
-    <section class="collection-section" id="collection">
-      <div class="container">
-        <header class="collection-header">
-          <div>
-            <div class="section-eyebrow">Pure Single Origin Harvest</div>
-            <h2 class="section-heading">Goodness, Packed With Care.</h2>
+    <!-- ============ 05–06 · TURMERIC ACT ============ -->
+    <section class="act act-turmeric" id="act-turmeric">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="act-bg-alt"></div>
+
+        <div class="bits" id="turmericBits" aria-hidden="true"></div>
+        <div class="burst" id="turmericBurst" aria-hidden="true"></div>
+
+        <div class="packet-shadow" id="turmericShadow" aria-hidden="true"></div>
+        <div class="packet" id="turmericPacket">
+          <img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder 500 g packet">
+        </div>
+
+        <div class="act-copy" id="turmericCopy" aria-hidden="true">
+          <p class="line" data-line="0">From earth's gold.</p>
+        </div>
+
+        <div class="act-copy act-reveal-wrap">
+          <div class="act-reveal" id="turmericReveal">
+            <span class="eyebrow">Sun-Dried · Alleppey Belt</span>
+            <h2>AOBA Turmeric</h2>
+            <div class="tagline">Golden goodness from nature.</div>
+            <p class="desc">Pure, naturally vibrant turmeric powder made for everyday cooking.</p>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Turmeric <span class="arw">&rarr;</span></a>
           </div>
-          <p class="collection-subtext">
-            Three iconic Kerala offerings, minimally processed to safeguard their volatile medicinal essences, natural aromas, and authentic agricultural heritage.
-          </p>
-        </header>
+        </div>
+      </div>
+    </section>
 
-        <div class="cards-grid">
-          
-          <!-- Card 1: Black Pepper -->
-          <article class="luxury-card" data-product-id="pepper-500g">
-            <div class="card-image-wrap">
-              <span class="card-origin-tag">Wayanad · 950m</span>
-              <img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper" class="card-product-img">
-            </div>
-            <div class="card-details">
-              <div class="card-title-row">
-                <h3 class="card-title">Black Pepper</h3>
-                <span class="card-price" id="price-pepper">₹480</span>
-              </div>
-              
-              <!-- Interactive Weight Selector -->
-              <div class="card-weight-row">
-                <span class="card-weight" id="weight-label-pepper">500 g Pouch</span>
-                <div class="weight-selector-pills">
-                  <button class="weight-opt-btn" data-weight="250g" data-price="260" data-prod="pepper">250g</button>
-                  <button class="weight-opt-btn active" data-weight="500g" data-price="480" data-prod="pepper">500g</button>
-                  <button class="weight-opt-btn" data-weight="1kg" data-price="920" data-prod="pepper">1kg</button>
-                </div>
-              </div>
+    <!-- ============ 07 · CASHEW ACT ============ -->
+    <section class="act act-cashew" id="act-cashew">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="act-bg-alt"></div>
 
-              <!-- Sensory Aroma Meters -->
-              <div class="card-aroma-meters">
-                <div class="aroma-metric-row">
-                  <span>Pungency & Heat</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 96%;"></div></div>
-                </div>
-                <div class="aroma-metric-row">
-                  <span>Piperine Volatiles</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 92%;"></div></div>
-                </div>
-              </div>
+        <div class="bits" id="cashewBits" aria-hidden="true"></div>
 
-              <p class="card-desc">
-                High-piperine whole black peppercorns sun-cured naturally for maximum floral heat and woodsy aroma.
-              </p>
-              <div class="card-actions">
-                <button class="card-btn-add" data-action="add-to-cart" data-product-id="pepper-500g">
-                  + Add to Basket
-                </button>
-                <button class="card-btn-quick" data-action="quick-view" data-product-id="pepper-500g">
-                  Quick View
-                </button>
+        <div class="packet-shadow" id="cashewShadow" aria-hidden="true"></div>
+        <div class="packet" id="cashewPacket">
+          <img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts 500 g packet">
+        </div>
+
+        <div class="act-copy" id="cashewCopy" aria-hidden="true">
+          <p class="line" data-line="0">Nature has its own rewards.</p>
+        </div>
+
+        <div class="act-copy act-reveal-wrap">
+          <div class="act-reveal" id="cashewReveal">
+            <span class="eyebrow">King W-180 · Kollam Coast</span>
+            <h2>AOBA Cashew Nuts</h2>
+            <div class="tagline">Naturally rich. Simply delicious.</div>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Cashews <span class="arw">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 08 · THREE PRODUCTS COLLECTION ============ -->
+    <section class="act act-collection" id="act-collection">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="bits" id="collectionBits" aria-hidden="true"></div>
+
+        <div class="collection-row" id="collectionRow">
+          <div class="packet" data-slot="pepper"><img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper"></div>
+          <div class="packet" data-slot="turmeric"><img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder"></div>
+          <div class="packet" data-slot="cashew"><img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts"></div>
+        </div>
+
+        <div class="act-copy">
+          <div class="act-reveal" id="collectionReveal">
+            <span class="eyebrow">The AOBA Collection</span>
+            <h2>Three Gifts From Nature.</h2>
+            <div class="tagline">One AOBA.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 09 · FARM STORY ============ -->
+    <section class="farm" id="farm">
+      <div class="farm-head">
+        <span class="eyebrow reveal">Authentic Agricultural Lineage</span>
+        <h2 class="reveal d1">Where the story begins.</h2>
+        <p class="reveal d2">Every AOBA pouch traces an unbroken line back to the misty estates of Kerala — the soil, the monsoon, the hands that tend it.</p>
+      </div>
+
+      <div class="farm-journey">
+        <div class="farm-stage" data-stage="0">
+          <div class="farm-parallax" data-speed="0.18" style="background-image:url('assets/kerala-estate.jpg')"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 01</div>
+            <div class="st-title">Farm</div>
+            <p class="st-desc">Old-growth pepper vines and organic groves climb the slopes of the Western Ghats, rooted in mineral-rich volcanic red soil.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="1">
+          <div class="farm-parallax" data-speed="0.14" style="background-image:url('assets/kerala-estate.jpg'); background-position:center 70%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 02</div>
+            <div class="st-title">Harvest</div>
+            <p class="st-desc">Every berry is picked by hand at the exact moment its sugars and aromatic oils reach their peak.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="2">
+          <div class="farm-parallax" data-speed="0.16" style="background-image:url('assets/kerala-spices.jpg')"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 03</div>
+            <div class="st-title">Select</div>
+            <p class="st-desc">Aroma evaluation and careful sorting for size, colour and moisture. Only the top grade moves forward.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="3">
+          <div class="farm-parallax" data-speed="0.12" style="background-image:url('assets/kerala-estate.jpg'); background-position:center 30%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 04</div>
+            <div class="st-title">Process</div>
+            <p class="st-desc">Traditional sun-curing on woven bamboo mats, then slow stone-cooling — locking in the volatile oils.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="4">
+          <div class="farm-parallax" data-speed="0.1" style="background-image:url('assets/kerala-spices.jpg'); background-position:center 40%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 05</div>
+            <div class="st-title">Pack</div>
+            <p class="st-desc">Nitrogen-flushed, triple-barrier pouches with UV and moisture protection — the aroma stays exactly as the estate intended.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="5">
+          <div class="farm-parallax" data-speed="0.08" style="background-image:url('assets/kerala-spices.jpg'); background-position:center 60%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 06</div>
+            <div class="st-title">Your Kitchen</div>
+            <p class="st-desc">Tear it open and the estate fills your room — pure, aromatic, unmistakably Kerala.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10 · HORIZONTAL STORYTELLING ============ -->
+    <section class="horizon" id="horizon">
+      <div class="horizon-track" id="horizonTrack">
+        <article class="hpanel" data-p="0">
+          <div class="hp-num">01</div>
+          <h2 class="hp-word">Rooted</h2>
+          <p class="hp-text">In generational smallholder farms across Kerala's Malabar coast, worked in rhythm with the monsoon.</p>
+        </article>
+        <article class="hpanel" data-p="1">
+          <div class="hp-num">02</div>
+          <h2 class="hp-word">Harvested</h2>
+          <p class="hp-text">By hand, at peak ripeness — never stripped green, never rushed for volume.</p>
+        </article>
+        <article class="hpanel" data-p="2">
+          <div class="hp-num">03</div>
+          <h2 class="hp-word">Selected</h2>
+          <p class="hp-text">Graded by aroma, colour and moisture. The rest goes back to the soil.</p>
+        </article>
+        <article class="hpanel" data-p="3">
+          <div class="hp-num">04</div>
+          <h2 class="hp-word">Packed</h2>
+          <p class="hp-text">Sealed fresh in triple-barrier pouches, so nothing stands between the estate and your table.</p>
+        </article>
+        <article class="hpanel" data-p="4">
+          <div class="hp-num">05</div>
+          <h2 class="hp-word">AOBA</h2>
+          <p class="hp-text">Pure. Natural. Authentic. One name for the whole journey.</p>
+        </article>
+      </div>
+      <div class="horizon-hint" aria-hidden="true">Scroll →</div>
+    </section>
+
+    <!-- ============ 11 · PRODUCT SHOWCASE ============ -->
+    <section class="shop" id="shop">
+      <div class="wrap">
+        <div class="shop-head">
+          <span class="eyebrow reveal">Explore AOBA</span>
+          <h2 class="reveal d1">The Collection</h2>
+        </div>
+
+        <div class="shop-grid">
+          <article class="shop-card reveal" data-accent="#1d1712">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
+              </div>
+              <div class="shop-meta">
+                <div class="nm">Black Pepper</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
               </div>
             </div>
           </article>
 
-          <!-- Card 2: Turmeric Powder -->
-          <article class="luxury-card" data-product-id="turmeric-500g">
-            <div class="card-image-wrap">
-              <span class="card-origin-tag">Alleppey · 5.2% Curcumin</span>
-              <img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder" class="card-product-img">
-            </div>
-            <div class="card-details">
-              <div class="card-title-row">
-                <h3 class="card-title">Turmeric Powder</h3>
-                <span class="card-price" id="price-turmeric">₹390</span>
+          <article class="shop-card reveal d1" data-accent="#c79a49">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
               </div>
-              
-              <!-- Interactive Weight Selector -->
-              <div class="card-weight-row">
-                <span class="card-weight" id="weight-label-turmeric">500 g Pouch</span>
-                <div class="weight-selector-pills">
-                  <button class="weight-opt-btn" data-weight="250g" data-price="210" data-prod="turmeric">250g</button>
-                  <button class="weight-opt-btn active" data-weight="500g" data-price="390" data-prod="turmeric">500g</button>
-                  <button class="weight-opt-btn" data-weight="1kg" data-price="750" data-prod="turmeric">1kg</button>
-                </div>
-              </div>
-
-              <!-- Sensory Aroma Meters -->
-              <div class="card-aroma-meters">
-                <div class="aroma-metric-row">
-                  <span>Active Curcumin</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 98%;"></div></div>
-                </div>
-                <div class="aroma-metric-row">
-                  <span>Golden Pigment</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 94%;"></div></div>
-                </div>
-              </div>
-
-              <p class="card-desc">
-                Luminous golden turmeric with guaranteed 5.2% bioavailable curcumin, ground without heat degradation.
-              </p>
-              <div class="card-actions">
-                <button class="card-btn-add" data-action="add-to-cart" data-product-id="turmeric-500g">
-                  + Add to Basket
-                </button>
-                <button class="card-btn-quick" data-action="quick-view" data-product-id="turmeric-500g">
-                  Quick View
-                </button>
+              <div class="shop-meta">
+                <div class="nm">Turmeric Powder</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
               </div>
             </div>
           </article>
 
-          <!-- Card 3: Cashew Nuts -->
-          <article class="luxury-card" data-product-id="cashew-500g">
-            <div class="card-image-wrap">
-              <span class="card-origin-tag">Kollam · Jumbo W-180</span>
-              <img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts" class="card-product-img">
-            </div>
-            <div class="card-details">
-              <div class="card-title-row">
-                <h3 class="card-title">Cashew Nuts</h3>
-                <span class="card-price" id="price-cashew">₹650</span>
+          <article class="shop-card reveal d2" data-accent="#d8b98a">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
               </div>
-              
-              <!-- Interactive Weight Selector -->
-              <div class="card-weight-row">
-                <span class="card-weight" id="weight-label-cashew">500 g Pouch</span>
-                <div class="weight-selector-pills">
-                  <button class="weight-opt-btn" data-weight="250g" data-price="350" data-prod="cashew">250g</button>
-                  <button class="weight-opt-btn active" data-weight="500g" data-price="650" data-prod="cashew">500g</button>
-                  <button class="weight-opt-btn" data-weight="1kg" data-price="1250" data-prod="cashew">1kg</button>
-                </div>
-              </div>
-
-              <!-- Sensory Aroma Meters -->
-              <div class="card-aroma-meters">
-                <div class="aroma-metric-row">
-                  <span>Natural Sweetness</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 95%;"></div></div>
-                </div>
-                <div class="aroma-metric-row">
-                  <span>Kernel Crunch</span>
-                  <div class="aroma-progress-track"><div class="aroma-progress-fill" style="width: 90%;"></div></div>
-                </div>
-              </div>
-
-              <p class="card-desc">
-                Pristine whole jumbo cashews selected for size, creamy mouthfeel, natural oils, and crisp texture.
-              </p>
-              <div class="card-actions">
-                <button class="card-btn-add" data-action="add-to-cart" data-product-id="cashew-500g">
-                  + Add to Basket
-                </button>
-                <button class="card-btn-quick" data-action="quick-view" data-product-id="cashew-500g">
-                  Quick View
-                </button>
+              <div class="shop-meta">
+                <div class="nm">Cashew Nuts</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
               </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTION: KERALA TERROIR & SENSORY FLAVOR MATRIX (Interactive Radar Compass)
-         ========================================================================== -->
-    <section class="terroir-matrix-section" id="terroir">
-      <div class="container">
-        <header class="terroir-header">
-          <div class="section-eyebrow">Botanical Compound Profiling</div>
-          <h2 class="section-heading">The Kerala Terroir & Flavor Compass</h2>
-          <p class="terroir-subtext">
-            Every harvest carries the unique geochemical fingerprint of its microclimate. Explore the sensory spectrum, bioactivity radar, and terroir parameters across our three single-origin harvests.
-          </p>
-        </header>
-
-        <!-- Product Selector Switcher -->
-        <div class="terroir-tabs-bar">
-          <button class="terroir-tab-btn active" data-terroir="pepper">
-            <span class="terroir-tab-icon">🌿</span>
-            <span>Tellicherry Black Pepper</span>
-          </button>
-          <button class="terroir-tab-btn" data-terroir="turmeric">
-            <span class="terroir-tab-icon">☀️</span>
-            <span>Alleppey Curcumin Turmeric</span>
-          </button>
-          <button class="terroir-tab-btn" data-terroir="cashew">
-            <span class="terroir-tab-icon">🌰</span>
-            <span>Kollam King Jumbo Cashews</span>
-          </button>
-        </div>
-
-        <div class="terroir-matrix-grid">
-          
-          <!-- Left: Interactive Sensory Radar Visualizer -->
-          <div class="radar-card">
-            <div class="radar-card-header">
-              <div>
-                <h3 class="radar-card-title" id="radar-title">Organoleptic Radar Analysis</h3>
-                <p class="radar-card-sub" id="radar-origin-label">Wayanad Highlands · Single Estate 950m ASL</p>
-              </div>
-              <span class="radar-badge-live">Lab Certified · 2026</span>
-            </div>
-
-            <div class="radar-canvas-container">
-              <!-- Interactive SVG Radar Spider Chart with 6 axes -->
-              <svg class="radar-svg" viewBox="0 0 400 400" id="radar-svg">
-                <!-- Concentric Web Polygons -->
-                <polygon class="radar-web" points="200,40 338,120 338,280 200,360 62,280 62,120"></polygon>
-                <polygon class="radar-web" points="200,80 304,140 304,260 200,320 96,260 96,140"></polygon>
-                <polygon class="radar-web" points="200,120 270,160 270,240 200,280 130,240 130,160"></polygon>
-                <polygon class="radar-web" points="200,160 235,180 235,220 200,240 165,220 165,180"></polygon>
-
-                <!-- 6 Axial Lines -->
-                <line class="radar-axis" x1="200" y1="200" x2="200" y2="40"></line>
-                <line class="radar-axis" x1="200" y1="200" x2="338" y2="120"></line>
-                <line class="radar-axis" x1="200" y1="200" x2="338" y2="280"></line>
-                <line class="radar-axis" x1="200" y1="200" x2="200" y2="360"></line>
-                <line class="radar-axis" x1="200" y1="200" x2="62" y2="280"></line>
-                <line class="radar-axis" x1="200" y1="200" x2="62" y2="120"></line>
-
-                <!-- Dynamic Data Polygon Area -->
-                <polygon class="radar-data-poly" id="radar-data-poly" points="200,50 330,130 290,250 200,340 85,270 75,130"></polygon>
-
-                <!-- 6 Vertex Points -->
-                <circle class="radar-dot" id="dot-0" cx="200" cy="50" r="5"></circle>
-                <circle class="radar-dot" id="dot-1" cx="330" cy="130" r="5"></circle>
-                <circle class="radar-dot" id="dot-2" cx="290" cy="250" r="5"></circle>
-                <circle class="radar-dot" id="dot-3" cx="200" cy="340" r="5"></circle>
-                <circle class="radar-dot" id="dot-4" cx="85" cy="270" r="5"></circle>
-                <circle class="radar-dot" id="dot-5" cx="75" cy="130" r="5"></circle>
-
-                <!-- Axis Labels -->
-                <text class="radar-lbl" x="200" y="25" text-anchor="middle">Heat & Pungency</text>
-                <text class="radar-lbl" x="348" y="115" text-anchor="start">Aromatic Volatiles</text>
-                <text class="radar-lbl" x="348" y="285" text-anchor="start">Earthiness</text>
-                <text class="radar-lbl" x="200" y="385" text-anchor="middle">Finish Persistence</text>
-                <text class="radar-lbl" x="52" y="285" text-anchor="end">Bioactivity</text>
-                <text class="radar-lbl" x="52" y="115" text-anchor="end">Creaminess / Oil</text>
-              </svg>
-            </div>
-
-            <!-- Sensory Descriptors Cloud -->
-            <div class="radar-notes-cloud" id="radar-notes-cloud">
-              <span class="sensory-pill active">Smoked Cedar</span>
-              <span class="sensory-pill active">Floral Pine</span>
-              <span class="sensory-pill active">Sharp Piperine</span>
-              <span class="sensory-pill active">Citrus Top-Note</span>
-              <span class="sensory-pill active">Sun-Dried Husk</span>
-            </div>
-          </div>
-
-          <!-- Right: Terroir Deep Dive & Agro-Climatic Profile -->
-          <div class="terroir-info-card">
-            <div class="terroir-badge-strip">
-              <span class="micro-badge" id="terroir-soil-badge">🌋 Mineral Red Laterite</span>
-              <span class="micro-badge" id="terroir-climate-badge">🌧️ 3,400mm Monsoon</span>
-              <span class="micro-badge" id="terroir-cycle-badge">☀️ Bamboo Sun-Curing</span>
-            </div>
-
-            <h3 class="terroir-info-title" id="terroir-info-title">Wayanad Highlands Terroir</h3>
-            <p class="terroir-info-desc" id="terroir-info-desc">
-              Perched at 950 meters in the misty Western Ghats, ancient metamorphic soils and heavy southwest monsoon rains combine to concentrate extraordinary piperine levels inside Tellicherry black peppercorns.
-            </p>
-
-            <div class="terroir-metrics-list">
-              <div class="terroir-metric-item">
-                <div class="terroir-metric-header">
-                  <span id="metric-1-name">Piperine Content</span>
-                  <strong id="metric-1-val">6.8% (Benchmark: 4.0%)</strong>
-                </div>
-                <div class="terroir-meter-track"><div class="terroir-meter-fill" id="metric-1-bar" style="width: 92%;"></div></div>
-              </div>
-
-              <div class="terroir-metric-item">
-                <div class="terroir-metric-header">
-                  <span id="metric-2-name">Essential Volatile Oils</span>
-                  <strong id="metric-2-val">3.4% v/w</strong>
-                </div>
-                <div class="terroir-meter-track"><div class="terroir-meter-fill" id="metric-2-bar" style="width: 88%;"></div></div>
-              </div>
-
-              <div class="terroir-metric-item">
-                <div class="terroir-metric-header">
-                  <span id="metric-3-name">Moisture Integrity</span>
-                  <strong id="metric-3-val">&lt; 10% (Zero Mold Risk)</strong>
-                </div>
-                <div class="terroir-meter-track"><div class="terroir-meter-fill" id="metric-3-bar" style="width: 95%;"></div></div>
-              </div>
-            </div>
-
-            <div class="terroir-pairing-callout">
-              <div class="pairing-callout-icon">👨‍🍳</div>
-              <div>
-                <div class="pairing-callout-title" id="terroir-pairing-title">Master Chef Pairing</div>
-                <div class="pairing-callout-text" id="terroir-pairing-text">Coarse-crushed over grass-fed steaks, slow mutton roasts, and winter mushroom broths.</div>
-              </div>
-            </div>
-
-            <div class="terroir-cta-row">
-              <button class="btn btn-primary" id="terroir-basket-btn" data-action="add-to-cart" data-product-id="pepper-500g">
-                + Add Wayanad Pepper to Basket
-              </button>
-              <a href="#recipes" class="btn btn-secondary">
-                View Signature Recipe →
-              </a>
-            </div>
-          </div>
-
+    <!-- ============ 12 · BRAND STATEMENT ============ -->
+    <section class="statement" id="statement">
+      <div class="wrap">
+        <h2>
+          <span class="ln"><span>From the Land.</span></span>
+          <span class="ln"><span>To Your Table.</span></span>
+        </h2>
+        <div class="statement-words" id="statementWords">
+          <span>Pure.</span><span>Natural.</span><span>Authentic.</span>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTION 6: FARM → PRODUCT STORY (Visual Journey)
-         ========================================================================== -->
-    <section class="farm-story-section" id="farm-story">
-      <div class="container">
-        <header class="farm-story-header">
-          <div class="section-eyebrow">Authentic Agricultural Lineage</div>
-          <h2 class="section-heading">From The Land. To Your Table.</h2>
-          <p>
-            Every AOBA pouch represents an unbroken agricultural heritage of generational Kerala farmers working in harmony with tropical monsoons and mineral-rich volcanic red soil.
-          </p>
-        </header>
-
-        <!-- 6-Stage Process Pathway -->
-        <div class="journey-timeline-container">
-          <div class="journey-stages-grid">
-            
-            <div class="stage-node-card active" data-stage="0">
-              <div class="stage-number">01</div>
-              <h3 class="stage-name">Farm</h3>
-              <p class="stage-desc">Old-growth pepper vines & organic groves across Wayanad’s misty Western Ghats.</p>
-            </div>
-
-            <div class="stage-node-card" data-stage="1">
-              <div class="stage-number">02</div>
-              <h3 class="stage-name">Harvest</h3>
-              <p class="stage-desc">Selective hand-picking at peak ripeness when berry sugars and oils peak.</p>
-            </div>
-
-            <div class="stage-node-card" data-stage="2">
-              <div class="stage-number">03</div>
-              <h3 class="stage-name">Select</h3>
-              <p class="stage-desc">Aroma evaluation and mechanical sorting for kernel size and moisture uniformity.</p>
-            </div>
-
-            <div class="stage-node-card" data-stage="3">
-              <div class="stage-number">04</div>
-              <h3 class="stage-name">Process</h3>
-              <p class="stage-desc">Traditional sun-curing on natural bamboo mats and slow stone-cooling cycles.</p>
-            </div>
-
-            <div class="stage-node-card" data-stage="4">
-              <div class="stage-number">05</div>
-              <h3 class="stage-name">Pack</h3>
-              <p class="stage-desc">Nitrogen-purged triple-barrier food grade pouches with UV and moisture protection.</p>
-            </div>
-
-            <div class="stage-node-card" data-stage="5">
-              <div class="stage-number">06</div>
-              <h3 class="stage-name">Your Kitchen</h3>
-              <p class="stage-desc">Pure, aromatic, authentic Kerala soul infusing every culinary creation.</p>
-            </div>
-
-          </div>
+    <!-- ============ 13 · QUALITY ============ -->
+    <section class="quality" id="quality">
+      <div class="wrap">
+        <div class="quality-head">
+          <span class="eyebrow reveal">Our Standards</span>
+          <h2 class="reveal d1">What makes AOBA different.</h2>
         </div>
-
-        <!-- Kerala Estate Banner Visual -->
-        <div class="farm-visual-banner">
-          <img src="assets/kerala-estate.jpg" alt="Misty Kerala Spice Plantation in Wayanad" class="farm-banner-img">
-          <div class="farm-banner-caption">
-            <div>
-              <div class="farm-banner-title">Wayanad Valley Spice Estates</div>
-              <div class="farm-banner-text">Where misty elevation, fertile soils, and monsoon mists create the world's most aromatic spices.</div>
-            </div>
-            <a href="#collection" class="btn btn-primary">Taste The Harvest</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         SECTION 7: AOBA BRAND STORY
-         ========================================================================== -->
-    <section class="brand-story-section" id="brand-story">
-      <div class="container">
-        <div class="brand-story-grid">
-          
-          <div class="story-copy-wrap">
-            <div class="section-eyebrow">The AOBA Creed</div>
-            <h2 class="story-big-quote">
-              Rooted in Nature.<br>Made for Everyday Life.
-            </h2>
-            <p class="story-lead-paragraph">
-              AOBA brings carefully selected products from nature to modern kitchens, with a focus on quality, authenticity, and simplicity.
-            </p>
-            <p class="story-body-paragraph">
-              Born from the lush biodiversity of Kerala’s Malabar coast, AOBA was conceived to challenge industrial commodity spices. We partner directly with generational smallholder families who nurture their soil organically, avoiding pesticides, irradiated treatments, and fillers.
-            </p>
-            <p class="story-body-paragraph">
-              From our distinct triple-layer pouches to the unadulterated aroma that fills your room the moment you tear open an AOBA pack, every detail is engineered to honor the earth and elevate everyday cooking into a conscious ritual.
-            </p>
-            <a href="#collection" class="btn btn-primary" style="background: var(--c-forest-dark); color: #fff;">
-              Explore The Collection
-            </a>
-          </div>
-
-          <div class="story-visual-wrap">
-            <div class="story-visual-main">
-              <img src="assets/kerala-spices.jpg" alt="Fresh Kerala Harvest Spices, Turmeric, Pepper and Cashews">
-            </div>
-            <div class="story-floating-stat">
-              <div class="stat-number">100%</div>
-              <div class="stat-label">Single Origin Traceability</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         SECTION: CURATED KERALA CHEF RECIPES & PAIRINGS
-         ========================================================================== -->
-    <section class="recipes-section" id="recipes">
-      <div class="container">
-        <header class="recipes-header">
-          <div class="section-eyebrow">Culinary Masterclasses</div>
-          <h2 class="section-heading">From Kerala To Your Kitchen.</h2>
-          <p>
-            Experience how world-class culinary masters and home chefs harness AOBA single-origin spices to create deeply aromatic signature dishes.
-          </p>
-        </header>
-
-        <div class="recipes-grid">
-          
-          <!-- Recipe 1: Tellicherry Pepper Steak -->
-          <article class="recipe-card">
-            <span class="recipe-badge">🌿 Tellicherry Black Pepper</span>
-            <h3 class="recipe-title">Wayanad Pepper Crusted Steak & Wild Morels</h3>
-            <p class="recipe-desc">
-              Coarsely hand-crushed AOBA black pepper seared over prime tenderloin with browned cultured butter, deglazed with red wine and forest wild mushrooms.
-            </p>
-            <div class="recipe-meta">
-              <span>⏱️ 25 Mins · Chef Level</span>
-              <button class="recipe-link-btn" data-action="quick-recipe" data-recipe="pepper">View Method →</button>
-            </div>
-          </article>
-
-          <!-- Recipe 2: Golden Curcumin Moilee -->
-          <article class="recipe-card">
-            <span class="recipe-badge">☀️ High-Curcumin Turmeric</span>
-            <h3 class="recipe-title">Alleppey Golden Coconut & Turmeric Moilee</h3>
-            <p class="recipe-desc">
-              A silky, fragrant coastal coconut milk broth infused with cold-milled AOBA turmeric, fresh ginger slivers, and green chillies over seared Kingfish.
-            </p>
-            <div class="recipe-meta">
-              <span>⏱️ 30 Mins · Heritage Classic</span>
-              <button class="recipe-link-btn" data-action="quick-recipe" data-recipe="turmeric">View Method →</button>
-            </div>
-          </article>
-
-          <!-- Recipe 3: Kollam Cashew Tart -->
-          <article class="recipe-card">
-            <span class="recipe-badge">🌰 King W-180 Cashews</span>
-            <h3 class="recipe-title">Slow-Roasted Cashew & Saffron Honey Tart</h3>
-            <p class="recipe-desc">
-              Caramelized whole jumbo Kollam cashews nestled in an organic jaggery and cardamom glaze atop a crisp almond-flour pastry crust.
-            </p>
-            <div class="recipe-meta">
-              <span>⏱️ 40 Mins · Artisanal Dessert</span>
-              <button class="recipe-link-btn" data-action="quick-recipe" data-recipe="cashew">View Method →</button>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-         SECTION 8: QUALITY SECTION (4 Pillars)
-         ========================================================================== -->
-    <section class="quality-section" id="quality">
-      <div class="container">
-        <header class="quality-header">
-          <div class="section-eyebrow">Our Uncompromising Standards</div>
-          <h2 class="section-heading">What Makes AOBA Different?</h2>
-          <p>
-            We bridge time-honored Malabar farming wisdom with modern food science and rigorous laboratory testing.
-          </p>
-        </header>
-
         <div class="quality-grid">
-          
-          <!-- Pillar 1 -->
-          <div class="quality-card">
-            <div class="quality-icon-circle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 class="quality-title">Pure</h3>
-            <p class="quality-desc">Carefully selected ingredients with zero artificial dyes, additives, or synthetic anti-caking agents.</p>
-            <div class="quality-metric">0% Additives · 100% Raw</div>
-          </div>
-
-          <!-- Pillar 2 -->
-          <div class="quality-card">
-            <div class="quality-icon-circle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-              </svg>
-            </div>
-            <h3 class="quality-title">Natural</h3>
-            <p class="quality-desc">Inspired by seasonal monsoon rhythms and biodiverse polyculture farming that preserves fertile soil.</p>
-            <div class="quality-metric">Regenerative Farming</div>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="quality-card">
-            <div class="quality-icon-circle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="8" r="7"/>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-              </svg>
-            </div>
-            <h3 class="quality-title">Quality</h3>
-            <p class="quality-desc">Thoughtfully processed, cold-milled, and packed in nitrogen-flushed barrier bags for fresh aroma.</p>
-            <div class="quality-metric">Lab Certified Essential Oils</div>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="quality-card">
-            <div class="quality-icon-circle">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <h3 class="quality-title">Authentic</h3>
-            <p class="quality-desc">Rooted in the timeless flavours, fertile terroir, and generational wisdom of Kerala, God's Own Country.</p>
-            <div class="quality-metric">Single-Origin Terroir</div>
-          </div>
-
+          <div class="q-card"><div class="q-idx">01</div><h3>Pure</h3><p>Carefully selected ingredients — no dyes, no fillers, no additives.</p></div>
+          <div class="q-card"><div class="q-idx">02</div><h3>Natural</h3><p>Inspired by nature and traditional agriculture, in tune with the seasons.</p></div>
+          <div class="q-card"><div class="q-idx">03</div><h3>Quality</h3><p>Thoughtfully processed, cold-milled and packed for lasting aroma.</p></div>
+          <div class="q-card"><div class="q-idx">04</div><h3>Authentic</h3><p>Rooted in the flavours, soil and terroir of Kerala.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- ==========================================================================
-         SECTION 9: FINAL CTA
-         ========================================================================== -->
-    <section class="final-cta-section" id="cta">
-      <div class="cta-backdrop-glow" aria-hidden="true"></div>
-
-      <div class="container cta-content">
-        <img src="assets/aoba-logo-hero.png" alt="AOBA Logo" class="cta-logo">
-        <h2 class="cta-title">Bring Nature Home.</h2>
-        <div class="cta-subtitle">Pure. Natural. Authentic.</div>
-
-        <form class="newsletter-form" id="newsletter-form" aria-label="Join AOBA Harvest Circle">
-          <input 
-            type="email" 
-            class="newsletter-input" 
-            placeholder="Enter your email for private seasonal harvests..." 
-            required 
-            aria-label="Email address"
-          >
-          <button type="submit" class="newsletter-submit">Join AOBA</button>
-        </form>
-
-        <div style="margin-top: 10px;">
-          <a href="#collection" class="btn btn-primary">
-            Explore AOBA →
-          </a>
-        </div>
+    <!-- ============ 14 · FINAL AOBA MOMENT ============ -->
+    <section class="final" id="final">
+      <canvas id="final-particles" aria-hidden="true"></canvas>
+      <div class="final-inner">
+        <img class="final-logo" src="assets/aoba-logo-hero.png" alt="AOBA">
+        <h2>Bring Nature Home.</h2>
+        <div class="sub">Pure. Natural. Authentic.</div>
+        <a href="#shop" class="btn btn-solid" data-scroll>Explore Products <span class="arw">&rarr;</span></a>
       </div>
+      <div class="site-foot">&copy; AOBA</div>
     </section>
 
   </main>
 
-  <!-- Luxury Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand-info">
-          <img src="assets/aoba-logo-hero.png" alt="AOBA Logo" style="height: 42px; margin-bottom: 12px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));">
-          <p>
-            Pure, authentic agricultural goods crafted with reverence for Kerala's rich botanical heritage.
-          </p>
-        </div>
+  <button class="fab fab-sound" id="soundToggle" type="button" aria-pressed="false" aria-label="Toggle ambient sound">
+    <svg class="ic-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4.5V4.5L8 9H4z"/><path d="M16.5 9.2l4.6 5.6M21.1 9.2l-4.6 5.6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+    <svg class="ic-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4.5V4.5L8 9H4z"/><path d="M16.4 8.6a4.2 4.2 0 0 1 0 6.8M18.9 6a7.5 7.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+  </button>
+  <button class="fab fab-top" id="toTop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3l7 7-1.5 1.5-5.5-5.5-5.5 5.5L5 14.3z"/></svg>
+  </button>
 
-        <div>
-          <h4 class="footer-col-title">Collection</h4>
-          <ul class="footer-links-list">
-            <li><a href="#collection">Black Pepper 500 g</a></li>
-            <li><a href="#collection">Turmeric Powder 500 g</a></li>
-            <li><a href="#collection">Cashew Nuts 500 g</a></li>
-            <li><a href="#recipes">Culinary Pairings</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Origin</h4>
-          <ul class="footer-links-list">
-            <li><a href="#farm-story">Wayanad Highlands</a></li>
-            <li><a href="#farm-story">Alleppey Soils</a></li>
-            <li><a href="#farm-story">Kollam Orchards</a></li>
-            <li><a href="#brand-story">Smallholder Farmers</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Standards</h4>
-          <ul class="footer-links-list">
-            <li><a href="#quality">Lab Certification</a></li>
-            <li><a href="#quality">Single-Origin Purity</a></li>
-            <li><a href="#quality">Zero Preservatives</a></li>
-            <li><a href="#quality">Eco Moisture-Lock Pouch</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom-bar">
-        <span>© 2026 AOBA Foods Private Limited. All rights reserved.</span>
-        <span>Kerala, India · Pure · Natural · Authentic</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Slide-out Cart Drawer -->
-  <div class="cart-drawer-overlay" id="cart-overlay" aria-hidden="true"></div>
-  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Basket">
-    <div class="cart-drawer-header">
-      <h3 class="cart-drawer-title">Your Basket</h3>
-      <button class="cart-close-btn" data-action="close-cart" aria-label="Close basket">✕</button>
-    </div>
-
-    <!-- Free Delivery Progress Tracker -->
-    <div class="shipping-meter-wrap">
-      <div class="shipping-text" id="shipping-status-text">Free express shipping on orders over ₹999</div>
-      <div class="shipping-bar">
-        <div class="shipping-bar-fill" id="shipping-bar-fill"></div>
-      </div>
-    </div>
-
-    <!-- Basket Items -->
-    <div class="cart-items-list" id="cart-items-list">
-      <!-- Injected dynamically by store.js -->
-    </div>
-
-    <div class="cart-drawer-footer">
-      <div class="cart-summary-row">
-        <span>Shipping (Kerala & Pan-India)</span>
-        <span style="color: #27ae60; font-weight: 600;">FREE</span>
-      </div>
-
-      <div class="cart-discount-row" id="cart-discount-row">
-        <span>Heritage Promo (10% Off)</span>
-        <span id="cart-discount-amt">-₹0</span>
-      </div>
-
-      <div class="cart-summary-row cart-summary-total">
-        <span>Total</span>
-        <span id="cart-grand-total">₹480</span>
-      </div>
-
-      <!-- Promo Code Field & Instant Apply Chip -->
-      <div class="cart-promo-box">
-        <input type="text" id="cart-promo-input" class="cart-promo-input" placeholder="Promo code (try KERALA10)">
-        <button class="cart-promo-btn" id="cart-promo-btn">Apply</button>
-      </div>
-      <div class="cart-promo-chips">
-        <button class="promo-chip" id="quick-promo-chip" data-apply-code="KERALA10" title="Click to auto-apply">
-          🏷️ Tap to Apply <strong>KERALA10</strong> (10% Off)
-        </button>
-      </div>
-
-      <button class="btn-checkout" id="checkout-btn">Proceed to Checkout</button>
-    </div>
-  </aside>
-
-  <!-- Quick View Product Modal -->
-  <div class="quick-view-modal-overlay" id="quick-view-overlay" aria-hidden="true">
-    <div class="quick-view-dialog">
-      <button class="quick-view-close" data-action="close-quick-view" aria-label="Close modal">✕</button>
-      <div class="quick-view-inner" id="quick-view-content" style="display: contents;">
-        <!-- Injected dynamically by app.js -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Recipe Details Modal -->
-  <div class="quick-view-modal-overlay" id="recipe-modal-overlay" aria-hidden="true">
-    <div class="quick-view-dialog" style="grid-template-columns: 1fr;">
-      <button class="quick-view-close" data-action="close-recipe-modal" aria-label="Close recipe modal">✕</button>
-      <div class="quick-view-body" id="recipe-modal-content" style="padding: 44px 36px;">
-        <!-- Injected dynamically by app.js -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Interactive Toast Notification -->
-  <div class="toast-msg" id="site-toast" role="alert"></div>
-
-  <!-- Scripts: Vendor Libraries (with CDN fallback for extreme reliability) -->
   <script src="assets/vendor/gsap.min.js"></script>
   <script src="assets/vendor/ScrollTrigger.min.js"></script>
   <script src="assets/vendor/lenis.min.js"></script>
   <script>
-    // If local vendor files somehow weren't loaded, load from CDN as backup
     if (typeof gsap === 'undefined') {
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>');
       document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"><\/script>');
     }
     if (typeof Lenis === 'undefined') {
-      document.write('<script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"><\/script>');
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.18/lenis.min.js"><\/script>');
     }
   </script>
-
-  <!-- Unified Application Core Script -->
-  <script src="assets/app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
