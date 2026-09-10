@@ -359,7 +359,8 @@
       var tl = gsap.timeline({
         scrollTrigger: {
           trigger: sec, start: 'top top', end: '+=440%',
-          pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true
+          pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
+          onUpdate: function (self) { sec.classList.toggle('is-split', self.progress > 0.5); }
         }
       });
 
@@ -379,24 +380,26 @@
           .to(ln, { opacity: 0, y: -20, filter: 'blur(6px)', duration: 0.04, ease: 'power2.in' }, at + 0.078);
       });
 
-      // 0.5 - 0.82 : product turns gently on its axis, peppercorns orbit, reveal rises
-      tl.to(orbiters.map(function (o) { return o.orb; }), { opacity: 1, duration: 0.05 }, 0.5)
-        .to(packet, { keyframes: { rotationY: [0, 18, -18, 0] }, duration: 0.34, ease: 'sine.inOut' }, 0.5)
-        .to(reveal, { opacity: 1, y: 0, duration: 0.08, ease: 'power3.out' }, 0.6);
+      // 0.46 - 0.66 : product glides to the left, peppercorns orbit it, the light deepens
+      var parkX = function () { return mqMobile.matches ? 0 : -vw() * 0.30; };
+      var parkY = function () { return mqMobile.matches ? -vh() * 0.17 : -vh() * 0.015; };
+
+      tl.to(bgAlt, { opacity: 1, duration: 0.2, ease: 'power1.inOut' }, 0.46)
+        .to(packet, { x: parkX, y: parkY, rotation: -6, scale: mqMobile.matches ? 0.7 : 0.8, duration: 0.18, ease: 'power2.inOut' }, 0.48)
+        .to(shadow, { x: parkX, y: function () { return vh() * (mqMobile.matches ? 0.13 : 0.23); }, scale: 0.9, opacity: 0.32, duration: 0.18, ease: 'power2.inOut' }, 0.48)
+        .to(orbiters.map(function (o) { return o.orb; }), { opacity: 1, duration: 0.06 }, 0.5)
+        .to(packet, { keyframes: { rotationY: [0, 14, -14, 0] }, duration: 0.34, ease: 'sine.inOut' }, 0.6);
       orbiters.forEach(function (o) {
-        tl.to(o.orb, { rotation: o.def.start + 320 * o.def.dir, duration: 0.44, ease: 'none' }, 0.5);
-        tl.fromTo(o.bit, { scale: 1 }, { scale: 0.5, duration: 0.22, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0.5);
+        tl.to(o.orb, { rotation: o.def.start + 300 * o.def.dir, duration: 0.5, ease: 'none' }, 0.5);
       });
 
-      // 0.84 - 1 : product recedes into the background, corns scatter, bg warms to gold
-      tl.to(packet, { scale: 0.6, y: function () { return -vh() * 0.22; }, filter: 'blur(6px)', opacity: 0.28, duration: 0.16, ease: 'power2.in' }, 0.84)
-        .to(shadow, { opacity: 0, scale: 0.5, duration: 0.12 }, 0.84)
-        .to(reveal, { opacity: 0, y: -24, duration: 0.1 }, 0.84)
-        .to(bgAlt, { opacity: 1, duration: 0.16, ease: 'power1.inOut' }, 0.84);
-      orbiters.forEach(function (o, i) {
-        tl.to(o.orb, { rotation: '+=' + (140 + i * 40), duration: 0.16, ease: 'power2.in' }, 0.84)
-          .to(o.bit, { x: (i % 2 ? 1 : -1) * (150 + i * 30), y: (i - 2) * 64, opacity: 0, scale: 0.4, duration: 0.16, ease: 'power2.in' }, 0.84);
-      });
+      // 0.62 : the story reveal rises in the right-hand column
+      tl.to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.62);
+
+      // 0.92 - 1 : ease the scene out for the hand-off to Turmeric
+      tl.to([packet, shadow], { opacity: 0, duration: 0.1, ease: 'power1.in' }, 0.92)
+        .to(reveal, { opacity: 0, y: -20, duration: 0.1 }, 0.92)
+        .to(orbiters.map(function (o) { return o.orb; }), { opacity: 0, duration: 0.1 }, 0.92);
     })();
 
     /* ==================================================================
@@ -423,7 +426,10 @@
         scrollTrigger: {
           trigger: sec, start: 'top top', end: '+=400%',
           pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
-          onUpdate: function (self) { sec.classList.toggle('turmeric-lit', self.progress > 0.72); }
+          onUpdate: function (self) {
+            sec.classList.toggle('is-split', self.progress > 0.55);
+            sec.classList.toggle('turmeric-lit', self.progress > 0.72);
+          }
         }
       });
 
@@ -446,9 +452,11 @@
       // reveal
       tl.to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.46);
 
-      // 0.6 - 1 : packet slides aside, golden particles fill screen -> gold bg -> clear
-      tl.to(packet, { x: function () { return -vw() * 0.32; }, rotation: -8, scale: 0.78, duration: 0.22, ease: 'power2.inOut' }, 0.6)
-        .to(shadow, { x: function () { return -vw() * 0.32; }, opacity: 0.24, duration: 0.22 }, 0.6);
+      // 0.6 - 1 : packet parks to the left, golden particles fill screen -> gold bg -> clear
+      var parkX = function () { return mqMobile.matches ? 0 : -vw() * 0.30; };
+      var parkY = function () { return mqMobile.matches ? -vh() * 0.17 : -vh() * 0.02; };
+      tl.to(packet, { x: parkX, y: parkY, rotation: -6, scale: mqMobile.matches ? 0.7 : 0.8, duration: 0.22, ease: 'power2.inOut' }, 0.6)
+        .to(shadow, { x: parkX, opacity: 0.24, duration: 0.22 }, 0.6);
 
       var r = seed(42);
       fill.forEach(function (b, i) {
@@ -475,6 +483,7 @@
       var shadow = $('#cashewShadow');
       var line = $('#cashewCopy .line');
       var reveal = $('#cashewReveal');
+      var bgAlt = $('.act-bg-alt', sec);
 
       // floating cashews at varied depth
       var floaters = makeBits($('#cashewBits'), 'cash', 7);
@@ -491,22 +500,34 @@
 
       var tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sec, start: 'top top', end: '+=340%',
-          pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true
+          trigger: sec, start: 'top top', end: '+=380%',
+          pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
+          onUpdate: function (self) { sec.classList.toggle('is-split', self.progress > 0.5); }
         }
       });
 
       fallInto(tl, { packet: packet, shadow: shadow, at: 0, dur: 0.28, spin: 10, blur: 9, land: 0.84 });
       trail(tl, trailBits, { at: 0.02, dur: 0.26, spread: 0.18 });
 
-      // product settles to hero position, then a slow drift up while the copy reads
-      tl.to(packet, { y: function () { return -vh() * 0.1; }, scale: 0.9, duration: 0.05, ease: 'power2.out' }, 0.28)
-        .to(shadow, { y: function () { return vh() * 0.3; }, opacity: 0.26, duration: 0.05 }, 0.28)
+      // product settles to hero position while the line reads
+      tl.to(packet, { y: function () { return -vh() * 0.08; }, scale: 0.92, duration: 0.05, ease: 'power2.out' }, 0.26)
+        .to(shadow, { y: function () { return vh() * 0.3; }, opacity: 0.26, duration: 0.05 }, 0.26)
         .fromTo(line, { opacity: 0, y: 24, filter: 'blur(6px)' },
-          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.06 }, 0.36)
-        .to(line, { opacity: 0, y: -18, filter: 'blur(6px)', duration: 0.06 }, 0.54)
-        .to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.57)
-        .to(packet, { y: function () { return -vh() * 0.14; }, duration: 0.4, ease: 'none' }, 0.5);
+          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.06 }, 0.3)
+        .to(line, { opacity: 0, y: -18, filter: 'blur(6px)', duration: 0.06 }, 0.46);
+
+      // 0.48 - 0.66 : packet glides to the left, warm cashew light fills the frame
+      var parkX = function () { return mqMobile.matches ? 0 : -vw() * 0.30; };
+      var parkY = function () { return mqMobile.matches ? -vh() * 0.17 : -vh() * 0.015; };
+      tl.to(bgAlt, { opacity: 1, duration: 0.2, ease: 'power1.inOut' }, 0.48)
+        .to(packet, { x: parkX, y: parkY, rotation: -5, scale: mqMobile.matches ? 0.7 : 0.8, duration: 0.18, ease: 'power2.inOut' }, 0.5)
+        .to(shadow, { x: parkX, y: function () { return vh() * (mqMobile.matches ? 0.13 : 0.23); }, scale: 0.9, opacity: 0.3, duration: 0.18, ease: 'power2.inOut' }, 0.5)
+        .to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.62);
+
+      // 0.92 - 1 : ease the scene out for the hand-off to the collection
+      tl.to([packet, shadow], { opacity: 0, duration: 0.1, ease: 'power1.in' }, 0.92)
+        .to(reveal, { opacity: 0, y: -20, duration: 0.1 }, 0.92)
+        .to(bgAlt, { opacity: 0, duration: 0.12 }, 0.92);
     })();
 
     /* ==================================================================

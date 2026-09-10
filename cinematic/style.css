@@ -259,10 +259,11 @@ body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.5s; }
 .bits { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
 
 .act-pepper   .act-bg     { background: radial-gradient(120% 90% at 50% 0%, #123a25 0%, var(--green-deep) 60%, var(--green-abyss) 100%); }
-.act-pepper   .act-bg-alt { background: radial-gradient(120% 90% at 50% 20%, #6d4c1e 0%, #3a2a12 55%, #1c1509 100%); }
+.act-pepper   .act-bg-alt { background: radial-gradient(88% 92% at 27% 50%, #1d5a3c 0%, #0c2e1c 42%, #040f0a 100%); }
 .act-turmeric .act-bg     { background: radial-gradient(120% 90% at 50% 15%, #7a5620 0%, #3d2a10 60%, #1b1206 100%); }
 .act-turmeric .act-bg-alt { background: radial-gradient(130% 100% at 50% 40%, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%); }
 .act-cashew   .act-bg     { background: radial-gradient(120% 90% at 50% 10%, #4a3a28 0%, #2b2117 58%, #150f0a 100%); }
+.act-cashew   .act-bg-alt { background: radial-gradient(92% 92% at 27% 48%, #85653f 0%, #402f1d 44%, #140e08 100%); }
 .act-collection .act-bg   { background: radial-gradient(130% 100% at 50% 20%, #1a4630 0%, var(--green-deep) 55%, var(--green-abyss) 100%); }
 
 /* Packet (realistic physical product card) */
@@ -336,6 +337,27 @@ body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.5s; }
 .act-turmeric.turmeric-lit .act-reveal .desc { color: var(--green-abyss); }
 .act-turmeric.turmeric-lit .act-reveal .eyebrow { color: var(--green-deep); }
 .act-turmeric.turmeric-lit .act-viewport::after { background: linear-gradient(to top, rgba(120,80,20,0.35) 0%, transparent 44%); }
+
+/* ---- Split reveal: the packet parks to the left, the story copy sits in the right column ---- */
+.act-reveal-wrap { align-items: center; padding-bottom: 0; }
+
+@media (min-width: 761px) {
+  .act.is-split .act-reveal-wrap {
+    justify-content: flex-end;
+    padding-left: 46%;
+    padding-right: clamp(48px, 8vw, 130px);
+  }
+  .act.is-split .act-reveal-wrap .act-reveal { text-align: left; max-width: 30rem; }
+  .act.is-split .act-reveal-wrap .act-reveal .eyebrow { margin-left: 0; }
+  .act.is-split .act-reveal-wrap .act-reveal .desc { margin-left: 0; margin-right: auto; }
+}
+@media (min-width: 761px) and (max-width: 1080px) {
+  .act.is-split .act-reveal-wrap { padding-left: 40%; padding-right: clamp(24px, 4vw, 60px); }
+  .act.is-split .act-reveal-wrap .act-reveal { max-width: 23rem; }
+}
+@media (max-width: 760px) {
+  .act-reveal-wrap { align-items: flex-end; padding-bottom: clamp(40px, 10vh, 90px); }
+}
 
 /* powder burst */
 .burst {

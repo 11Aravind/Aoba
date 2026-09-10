@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOBA Agro & Farm Supply — Grow Bags, Farm Tools, Machinery & Kerala Spices</title>
+  
+  <meta name="description" content="Shop AOBA Agro & Farm Supply: Heavy-duty UV grow bags, precision pruning tools, spice pulverizer machines, bio-fertilizers, and single-origin Kerala farm spices.">
+  <meta name="theme-color" content="#122c1b">
+
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOBA Agro Dedicated Stylesheet (Logo Green Theme) -->
+  <link rel="stylesheet" href="assets/agro.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP ANNOUNCEMENT BAR
+       ========================================================================== -->
+  <aside class="agro-topbar">
+    <div class="agro-topbar-left">
+      <span class="topbar-highlight">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+        </svg>
+        Same-Day Kerala Farm Dispatch
+      </span>
+      <span>• Free Delivery on Orders Over ₹999</span>
+      <span class="topbar-badge">Govt. Farm Subsidy Eligible</span>
+    </div>
+
+    <div class="agro-topbar-links">
+      <a href="index.html">← Gourmet Spices Flagship</a>
+      <a href="demo.html">Cinematic Film</a>
+      <a href="tel:+919447000000">Farmer Hotline: +91 94470 00000</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       STICKY HEADER & NAVIGATION
+       ========================================================================== -->
+  <header class="agro-header">
+    <div class="agro-nav-inner">
+      <a href="agro.html" class="agro-brand-link">
+        <img src="assets/aoba-logo-white.png" alt="AOBA Logo" class="agro-logo-img">
+        <div class="agro-brand-title-wrap">
+          <span class="agro-brand-title">AOBA AGRO</span>
+          <span class="agro-brand-subtitle">Farm & Machinery Supply</span>
+        </div>
+      </a>
+
+      <!-- Live Search Bar -->
+      <div class="agro-nav-search">
+        <svg class="agro-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" id="agroSearchInput" class="agro-search-input" placeholder="Search grow bags, pulverizers, secateurs, spices...">
+      </div>
+
+      <!-- Actions -->
+      <div class="agro-nav-actions">
+        <a href="index.html" class="nav-link-btn">
+          <span>Gourmet Store</span>
+        </a>
+        <a href="demo.html" class="nav-link-btn">
+          <span>Brand Film</span>
+        </a>
+
+        <!-- Cart Trigger Button -->
+        <button class="nav-cart-btn" id="navCartBtn" type="button" aria-label="Open Cart">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="cart-counter-pill" id="navCartPill">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO BANNER — AGRO SPOTLIGHT
+       ========================================================================== -->
+  <section class="agro-hero">
+    <div class="agro-hero-card">
+      <div class="agro-hero-content">
+        <div class="agro-hero-tag">
+          <span>🌱</span> Kerala Agriculture & Plantation Direct
+        </div>
+        <h1 class="agro-hero-heading">
+          Equipping Kerala’s Farms <span>& Terrace Gardens</span>
+        </h1>
+        <p class="agro-hero-desc">
+          Professional-grade UV grow bags, precision carbon steel pruning tools, commercial spice pulverizing machines, and pure single-origin harvest directly from Wayanad and Idukki plantations.
+        </p>
+
+        <div class="agro-hero-stats">
+          <div class="stat-item">
+            <div class="stat-item-num">240 GSM</div>
+            <div class="stat-item-label">UV HDPE Heavy-Duty</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item-num">14,200+</div>
+            <div class="stat-item-label">Farmers & Gardeners</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-item-num">Pan-India</div>
+            <div class="stat-item-label">Safe Freight Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="agro-hero-preview">
+        <div class="hero-preview-stack">
+          <img src="assets/agro-grow-bags.jpg" alt="AOBA Heavy-Duty Grow Bags">
+          <div class="hero-preview-badge">
+            <div>
+              <div class="preview-badge-title">UV HDPE Grow Bag 10-Pack</div>
+              <div class="preview-badge-sub">₹699 (42% Off Factory Direct)</div>
+            </div>
+            <a href="#catalog" class="preview-badge-btn" onclick="openProductModal('gb-hdpe-set')">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CATEGORY CONTROLS & FILTER BAR
+       ========================================================================== -->
+  <section class="agro-controls-sec" id="catalog">
+    <div class="agro-filter-bar">
+      <!-- Category Tabs -->
+      <div class="category-tabs">
+        <button class="cat-tab-btn active" data-category="all" type="button">
+          All Products
+        </button>
+        <button class="cat-tab-btn" data-category="growbags" type="button">
+          Grow Bags & Planters
+        </button>
+        <button class="cat-tab-btn" data-category="tools" type="button">
+          Farm & Pruning Tools
+        </button>
+        <button class="cat-tab-btn" data-category="machines" type="button">
+          Agro Machinery
+        </button>
+        <button class="cat-tab-btn" data-category="spices" type="button">
+          Kerala Farm Spices
+        </button>
+        <button class="cat-tab-btn" data-category="bio" type="button">
+          Bio-Inputs & Nutrients
+        </button>
+      </div>
+
+      <!-- Sub Filters: Sorting & In Stock -->
+      <div class="agro-sub-filters">
+        <div class="filter-select-wrap">
+          <select id="agroSortSelect" class="filter-select">
+            <option value="featured">Featured First</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Customer Rated</option>
+          </select>
+          <svg class="filter-select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </div>
+
+        <label class="in-stock-toggle-label">
+          <input type="checkbox" id="inStockToggle">
+          <span>In-Stock Only</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PRODUCT CATALOG GRID
+       ========================================================================== -->
+  <section class="agro-catalog-sec">
+    <div class="catalog-header-meta">
+      <span>Showing Verified Farm Equipment & Plantation Products</span>
+      <span class="catalog-count-badge" id="catalogCountBadge">Loading items...</span>
+    </div>
+
+    <div class="agro-product-grid" id="agroProductGrid">
+      <!-- Dynamically Rendered by assets/agro.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FARMER SUBSIDY & AGRO CONSULTATION BANNER
+       ========================================================================== -->
+  <section class="agro-banner-sec">
+    <div class="subsidy-banner-card">
+      <div class="subsidy-content">
+        <h3>Government Agricultural Subsidy & Machinery Consultation</h3>
+        <p>
+          Are you planning to install spice pulverizers, solar cardamom dehydrators, or automated farm micro-irrigation? AOBA provides complete documentation support for Kerala Agriculture Department Subsidies (up to 40% grant assistance).
+        </p>
+
+        <div class="subsidy-features-list">
+          <div class="subsidy-feat-pill">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            Subsidized Invoicing
+          </div>
+          <div class="subsidy-feat-pill">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            On-Site Installation Support
+          </div>
+          <div class="subsidy-feat-pill">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            3-Year Machine Warranty
+          </div>
+        </div>
+      </div>
+
+      <div class="subsidy-cta-wrap">
+        <a href="https://wa.me/919447000000?text=Hello%20AOBA%20Agro%2C%20I%20need%20information%20on%20farm%20machinery%20and%20subsidies" class="btn-subsidy-wa" target="_blank" rel="noopener">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.16c-.24.68-1.2 1.28-1.7 1.34-.48.06-1.07.09-3.18-.78-2.69-1.12-4.41-3.86-4.55-4.04-.13-.18-1.09-1.46-1.09-2.78 0-1.32.69-1.97.94-2.24.25-.26.54-.33.72-.33.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.77 1.9.84 2.04.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.3.35-.43.47-.14.14-.29.29-.12.58.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.46.12.63-.07.18-.19.74-.86.94-1.16.2-.29.4-.24.68-.14.28.1 1.77.83 2.07.98.3.15.5.23.57.36.08.13.08.77-.16 1.45z"/>
+          </svg>
+          Chat with Agro Engineer
+        </a>
+        <span class="subsidy-phone-text">Helpline: Mon - Sat (9:00 AM - 6:00 PM IST)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SLIDE-OUT SHOPPING CART DRAWER
+       ========================================================================== -->
+  <div class="cart-drawer-backdrop" id="cartDrawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="cart-drawer-header">
+      <div class="cart-title-wrap">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+        </svg>
+        <h2 class="cart-drawer-title">Farm Cart</h2>
+      </div>
+      <button class="cart-close-btn" id="cartCloseBtn" type="button" aria-label="Close Cart">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="cart-free-shipping-bar">
+      <div class="shipping-progress-text" id="shippingProgressText">
+        Add items for FREE Kerala Shipping
+      </div>
+      <div class="shipping-progress-track">
+        <div class="shipping-progress-fill" id="shippingProgressFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable Area -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Injected by assets/agro.js -->
+    </div>
+
+    <!-- Cart Drawer Footer Summary -->
+    <div class="cart-drawer-footer">
+      <!-- Coupon Field -->
+      <div class="cart-coupon-row">
+        <input type="text" id="couponInput" class="coupon-input" placeholder="Promo Code: AOBAFARM10">
+        <button class="coupon-btn" id="applyCouponBtn" type="button">Apply</button>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Subtotal</span>
+        <span id="cartSubtotalAmount">₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>Discount</span>
+        <span id="cartDiscountAmount" style="color: var(--c-gold-bright);">-₹0</span>
+      </div>
+      <div class="cart-summary-line">
+        <span>GST & Delivery</span>
+        <span style="color: var(--c-leaf-light);">Included (All India)</span>
+      </div>
+
+      <div class="cart-summary-total">
+        <span>Total Payable</span>
+        <span class="cart-total-amount" id="cartTotalAmount">₹0</span>
+      </div>
+
+      <div class="cart-checkout-actions">
+        <button class="btn-checkout-wa" id="btnCheckoutWa" type="button">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.8 14.16c-.24.68-1.2 1.28-1.7 1.34-.48.06-1.07.09-3.18-.78-2.69-1.12-4.41-3.86-4.55-4.04-.13-.18-1.09-1.46-1.09-2.78 0-1.32.69-1.97.94-2.24.25-.26.54-.33.72-.33.18 0 .36 0 .52.01.17.01.39-.06.61.47.23.55.77 1.9.84 2.04.07.14.12.3.02.49-.09.19-.14.3-.28.46-.14.16-.3.35-.43.47-.14.14-.29.29-.12.58.17.29.74 1.22 1.59 1.98 1.09.97 2.01 1.27 2.3 1.41.29.14.46.12.63-.07.18-.19.74-.86.94-1.16.2-.29.4-.24.68-.14.28.1 1.77.83 2.07.98.3.15.5.23.57.36.08.13.08.77-.16 1.45z"/>
+          </svg>
+          Instant WhatsApp Checkout
+        </button>
+
+        <button class="btn-checkout-direct" id="btnCheckoutDirect" type="button">
+          Proceed with Direct Farm Order
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       PRODUCT DETAIL / QUICK VIEW MODAL
+       ========================================================================== -->
+  <div class="agro-modal-backdrop" id="productModalBackdrop">
+    <div class="agro-modal-box" id="productModalBox">
+      <!-- Injected by assets/agro.js openProductModal -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="agro-footer">
+    <div class="agro-footer-inner">
+      <div class="footer-brand-col">
+        <a href="agro.html" class="agro-brand-link">
+          <img src="assets/aoba-logo-white.png" alt="AOBA Logo" class="agro-logo-img">
+          <div class="agro-brand-title-wrap">
+            <span class="agro-brand-title">AOBA AGRO</span>
+            <span class="agro-brand-subtitle">Farm Supply Division</span>
+          </div>
+        </a>
+        <p>
+          Dedicated agricultural equipment, UV grow bags, precision tools, and estate-direct spices from Kerala. Engineered for modern smallholders, organic planters, and commercial estates.
+        </p>
+        <span class="topbar-badge">Kerala Plantation Direct</span>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Categories</h4>
+        <ul class="footer-links-list">
+          <li><a href="#catalog" onclick="document.querySelector('[data-category=growbags]').click()">UV Grow Bags</a></li>
+          <li><a href="#catalog" onclick="document.querySelector('[data-category=tools]').click()">Pruners & Sickles</a></li>
+          <li><a href="#catalog" onclick="document.querySelector('[data-category=machines]').click()">Spice Pulverizers</a></li>
+          <li><a href="#catalog" onclick="document.querySelector('[data-category=spices]').click()">Wayanad Spices</a></li>
+          <li><a href="#catalog" onclick="document.querySelector('[data-category=bio]').click()">Neem Cake & Coir</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Store Network</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">AOBA Gourmet Spices</a></li>
+          <li><a href="demo.html">Cinematic Film Experience</a></li>
+          <li><a href="agro.html">Agro Tools & Machinery</a></li>
+          <li><a href="#catalog">Wholesale & Nursery Supply</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Farmer Support</h4>
+        <ul class="footer-links-list">
+          <li><a href="tel:+919447000000">Toll-Free Helpline: 1800-AOBA-AGRI</a></li>
+          <li><a href="https://wa.me/919447000000" target="_blank">WhatsApp Direct Desk</a></li>
+          <li><a href="#catalog">Kerala Agri Subsidy Desk</a></li>
+          <li><span>Service Centers: Kozhikode, Wayanad, Idukki, Kochi</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="agro-footer-bottom">
+      <span>© 2026 AOBA AGRO & FOODS. All Rights Reserved. Kerala Origin.</span>
+      <span>Engineered for Sustainable Agriculture • 100% Genuine Farm Warranty</span>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="assets/agro.js"></script>
+</body>
+</html>
