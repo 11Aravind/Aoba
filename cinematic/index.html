@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOBA — A Journey from Nature to Your Kitchen</title>
+  <meta name="description" content="AOBA — Pure. Natural. Authentic. A cinematic journey from Kerala's nature to your kitchen. Single-origin Black Pepper, Turmeric and Cashew Nuts.">
+  <meta name="theme-color" content="#0a2416">
+
+  <meta property="og:title" content="AOBA — Pure. Natural. Authentic.">
+  <meta property="og:description" content="A journey from Kerala's nature to your kitchen.">
+  <meta property="og:image" content="assets/aoba-logo-hero.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="preload" as="image" href="assets/black-pepper-500g.png">
+  <link rel="preload" as="image" href="assets/turmeric-500g.png">
+  <link rel="preload" as="image" href="assets/cashew-500g.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="is-loading">
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a href="#hero" class="nav-logo" aria-label="AOBA home" data-scroll>
+        <img src="assets/aoba-logo-hero.png" alt="AOBA">
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#hero" data-scroll>Home</a>
+        <a href="#shop" data-scroll>Products</a>
+        <a href="#farm" data-scroll>Our Story</a>
+        <a href="#final" data-scroll>Contact</a>
+      </nav>
+      <a href="#shop" class="btn btn-solid nav-cta" data-scroll>Shop Now</a>
+      <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#hero" data-scroll>Home</a>
+    <a href="#shop" data-scroll>Products</a>
+    <a href="#farm" data-scroll>Our Story</a>
+    <a href="#final" data-scroll>Contact</a>
+    <a href="#shop" data-scroll>Shop Now</a>
+    <div class="mm-foot">Pure · Natural · Authentic</div>
+  </nav>
+
+  <main>
+
+    <!-- ============ 01 · CINEMATIC HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="hero-veil" id="heroVeil" aria-hidden="true"></div>
+      <canvas id="hero-particles" aria-hidden="true"></canvas>
+
+      <svg class="hero-leaf lf1" viewBox="0 0 100 100" aria-hidden="true"><path d="M8,92 Q42,8 92,18 Q62,84 8,92 Z" fill="currentColor"/></svg>
+      <svg class="hero-leaf lf2" viewBox="0 0 100 100" aria-hidden="true"><path d="M12,88 Q52,12 88,14 Q66,78 12,88 Z" fill="currentColor"/></svg>
+      <svg class="hero-leaf lf3" viewBox="0 0 100 100" aria-hidden="true"><path d="M10,84 Q46,18 84,10 Q60,74 10,84 Z" fill="currentColor"/></svg>
+
+      <div class="hero-inner">
+        <img class="hero-logo" id="heroLogo" src="assets/aoba-logo-hero.png" alt="AOBA">
+        <h1 class="hero-tag" id="heroTag" aria-label="Pure. Natural. Authentic.">
+          <span class="w">Pure.</span> <span class="w">Natural.</span> <span class="w">Authentic.</span>
+        </h1>
+        <p class="hero-sub" id="heroSub">A journey from nature to your kitchen.</p>
+      </div>
+
+      <div class="hero-cue" id="heroCue" aria-hidden="true">
+        <span>Scroll to begin</span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- ============ 02–04 · BLACK PEPPER ACT ============ -->
+    <section class="act act-pepper" id="act-pepper">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="act-bg-alt"></div>
+
+        <div class="bits" id="pepperBits" aria-hidden="true"></div>
+
+        <div class="packet-shadow" id="pepperShadow" aria-hidden="true"></div>
+        <div class="packet" id="pepperPacket">
+          <img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper 500 g packet">
+        </div>
+
+        <div class="act-copy" id="pepperCopy" aria-hidden="true">
+          <p class="line" data-line="0">It starts with a single peppercorn.</p>
+          <p class="line" data-line="1">Grown with nature.</p>
+          <p class="line" data-line="2">Crafted for flavour.</p>
+        </div>
+
+        <div class="act-copy">
+          <div class="act-reveal" id="pepperReveal">
+            <span class="eyebrow">Single Origin · Wayanad</span>
+            <h2>AOBA Black Pepper</h2>
+            <div class="tagline">Bold flavour. Naturally authentic.</div>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Black Pepper <span class="arw">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05–06 · TURMERIC ACT ============ -->
+    <section class="act act-turmeric" id="act-turmeric">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="act-bg-alt"></div>
+
+        <div class="bits" id="turmericBits" aria-hidden="true"></div>
+        <div class="burst" id="turmericBurst" aria-hidden="true"></div>
+
+        <div class="packet-shadow" id="turmericShadow" aria-hidden="true"></div>
+        <div class="packet" id="turmericPacket">
+          <img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder 500 g packet">
+        </div>
+
+        <div class="act-copy" id="turmericCopy" aria-hidden="true">
+          <p class="line" data-line="0">From earth's gold.</p>
+        </div>
+
+        <div class="act-copy">
+          <div class="act-reveal" id="turmericReveal">
+            <span class="eyebrow">Sun-Dried · Alleppey Belt</span>
+            <h2>AOBA Turmeric</h2>
+            <div class="tagline">Golden goodness from nature.</div>
+            <p class="desc">Pure, naturally vibrant turmeric powder made for everyday cooking.</p>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Turmeric <span class="arw">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 07 · CASHEW ACT ============ -->
+    <section class="act act-cashew" id="act-cashew">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+
+        <div class="bits" id="cashewBits" aria-hidden="true"></div>
+
+        <div class="packet-shadow" id="cashewShadow" aria-hidden="true"></div>
+        <div class="packet" id="cashewPacket">
+          <img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts 500 g packet">
+        </div>
+
+        <div class="act-copy" id="cashewCopy" aria-hidden="true">
+          <p class="line" data-line="0">Nature has its own rewards.</p>
+        </div>
+
+        <div class="act-copy">
+          <div class="act-reveal" id="cashewReveal">
+            <span class="eyebrow">King W-180 · Kollam Coast</span>
+            <h2>AOBA Cashew Nuts</h2>
+            <div class="tagline">Naturally rich. Simply delicious.</div>
+            <a href="#shop" class="btn btn-ghost" data-scroll>Discover Cashews <span class="arw">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 08 · THREE PRODUCTS COLLECTION ============ -->
+    <section class="act act-collection" id="act-collection">
+      <div class="act-viewport" data-pin>
+        <div class="act-bg"></div>
+        <div class="bits" id="collectionBits" aria-hidden="true"></div>
+
+        <div class="collection-row" id="collectionRow">
+          <div class="packet" data-slot="pepper"><img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper"></div>
+          <div class="packet" data-slot="turmeric"><img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder"></div>
+          <div class="packet" data-slot="cashew"><img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts"></div>
+        </div>
+
+        <div class="act-copy">
+          <div class="act-reveal" id="collectionReveal">
+            <span class="eyebrow">The AOBA Collection</span>
+            <h2>Three Gifts From Nature.</h2>
+            <div class="tagline">One AOBA.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 09 · FARM STORY ============ -->
+    <section class="farm" id="farm">
+      <div class="farm-head">
+        <span class="eyebrow reveal">Authentic Agricultural Lineage</span>
+        <h2 class="reveal d1">Where the story begins.</h2>
+        <p class="reveal d2">Every AOBA pouch traces an unbroken line back to the misty estates of Kerala — the soil, the monsoon, the hands that tend it.</p>
+      </div>
+
+      <div class="farm-journey">
+        <div class="farm-stage" data-stage="0">
+          <div class="farm-parallax" data-speed="0.18" style="background-image:url('assets/kerala-estate.jpg')"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 01</div>
+            <div class="st-title">Farm</div>
+            <p class="st-desc">Old-growth pepper vines and organic groves climb the slopes of the Western Ghats, rooted in mineral-rich volcanic red soil.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="1">
+          <div class="farm-parallax" data-speed="0.14" style="background-image:url('assets/kerala-estate.jpg'); background-position:center 70%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 02</div>
+            <div class="st-title">Harvest</div>
+            <p class="st-desc">Every berry is picked by hand at the exact moment its sugars and aromatic oils reach their peak.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="2">
+          <div class="farm-parallax" data-speed="0.16" style="background-image:url('assets/kerala-spices.jpg')"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 03</div>
+            <div class="st-title">Select</div>
+            <p class="st-desc">Aroma evaluation and careful sorting for size, colour and moisture. Only the top grade moves forward.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="3">
+          <div class="farm-parallax" data-speed="0.12" style="background-image:url('assets/kerala-estate.jpg'); background-position:center 30%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 04</div>
+            <div class="st-title">Process</div>
+            <p class="st-desc">Traditional sun-curing on woven bamboo mats, then slow stone-cooling — locking in the volatile oils.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="4">
+          <div class="farm-parallax" data-speed="0.1" style="background-image:url('assets/kerala-spices.jpg'); background-position:center 40%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 05</div>
+            <div class="st-title">Pack</div>
+            <p class="st-desc">Nitrogen-flushed, triple-barrier pouches with UV and moisture protection — the aroma stays exactly as the estate intended.</p>
+          </div>
+        </div>
+
+        <div class="farm-stage" data-stage="5">
+          <div class="farm-parallax" data-speed="0.08" style="background-image:url('assets/kerala-spices.jpg'); background-position:center 60%"></div>
+          <div class="farm-tint"></div>
+          <div class="wrap">
+            <div class="st-num">Stage 06</div>
+            <div class="st-title">Your Kitchen</div>
+            <p class="st-desc">Tear it open and the estate fills your room — pure, aromatic, unmistakably Kerala.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10 · HORIZONTAL STORYTELLING ============ -->
+    <section class="horizon" id="horizon">
+      <div class="horizon-track" id="horizonTrack">
+        <article class="hpanel" data-p="0">
+          <div class="hp-num">01</div>
+          <h2 class="hp-word">Rooted</h2>
+          <p class="hp-text">In generational smallholder farms across Kerala's Malabar coast, worked in rhythm with the monsoon.</p>
+        </article>
+        <article class="hpanel" data-p="1">
+          <div class="hp-num">02</div>
+          <h2 class="hp-word">Harvested</h2>
+          <p class="hp-text">By hand, at peak ripeness — never stripped green, never rushed for volume.</p>
+        </article>
+        <article class="hpanel" data-p="2">
+          <div class="hp-num">03</div>
+          <h2 class="hp-word">Selected</h2>
+          <p class="hp-text">Graded by aroma, colour and moisture. The rest goes back to the soil.</p>
+        </article>
+        <article class="hpanel" data-p="3">
+          <div class="hp-num">04</div>
+          <h2 class="hp-word">Packed</h2>
+          <p class="hp-text">Sealed fresh in triple-barrier pouches, so nothing stands between the estate and your table.</p>
+        </article>
+        <article class="hpanel" data-p="4">
+          <div class="hp-num">05</div>
+          <h2 class="hp-word">AOBA</h2>
+          <p class="hp-text">Pure. Natural. Authentic. One name for the whole journey.</p>
+        </article>
+      </div>
+      <div class="horizon-hint" aria-hidden="true">Scroll →</div>
+    </section>
+
+    <!-- ============ 11 · PRODUCT SHOWCASE ============ -->
+    <section class="shop" id="shop">
+      <div class="wrap">
+        <div class="shop-head">
+          <span class="eyebrow reveal">Explore AOBA</span>
+          <h2 class="reveal d1">The Collection</h2>
+        </div>
+
+        <div class="shop-grid">
+          <article class="shop-card reveal" data-accent="#1d1712">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/black-pepper-500g.png" alt="AOBA Black Pepper 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
+              </div>
+              <div class="shop-meta">
+                <div class="nm">Black Pepper</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="shop-card reveal d1" data-accent="#c79a49">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/turmeric-500g.png" alt="AOBA Turmeric Powder 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
+              </div>
+              <div class="shop-meta">
+                <div class="nm">Turmeric Powder</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="shop-card reveal d2" data-accent="#d8b98a">
+            <div class="shop-card-inner">
+              <div class="shop-media">
+                <img src="assets/cashew-500g.png" alt="AOBA Cashew Nuts 500 g">
+                <div class="shop-ing" aria-hidden="true"></div>
+              </div>
+              <div class="shop-meta">
+                <div class="nm">Cashew Nuts</div>
+                <div class="wt">500 g</div>
+                <a href="#" class="btn btn-dark">View Product <span class="arw">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12 · BRAND STATEMENT ============ -->
+    <section class="statement" id="statement">
+      <div class="wrap">
+        <h2>
+          <span class="ln"><span>From the Land.</span></span>
+          <span class="ln"><span>To Your Table.</span></span>
+        </h2>
+        <div class="statement-words" id="statementWords">
+          <span>Pure.</span><span>Natural.</span><span>Authentic.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 13 · QUALITY ============ -->
+    <section class="quality" id="quality">
+      <div class="wrap">
+        <div class="quality-head">
+          <span class="eyebrow reveal">Our Standards</span>
+          <h2 class="reveal d1">What makes AOBA different.</h2>
+        </div>
+        <div class="quality-grid">
+          <div class="q-card"><div class="q-idx">01</div><h3>Pure</h3><p>Carefully selected ingredients — no dyes, no fillers, no additives.</p></div>
+          <div class="q-card"><div class="q-idx">02</div><h3>Natural</h3><p>Inspired by nature and traditional agriculture, in tune with the seasons.</p></div>
+          <div class="q-card"><div class="q-idx">03</div><h3>Quality</h3><p>Thoughtfully processed, cold-milled and packed for lasting aroma.</p></div>
+          <div class="q-card"><div class="q-idx">04</div><h3>Authentic</h3><p>Rooted in the flavours, soil and terroir of Kerala.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 14 · FINAL AOBA MOMENT ============ -->
+    <section class="final" id="final">
+      <canvas id="final-particles" aria-hidden="true"></canvas>
+      <div class="final-inner">
+        <img class="final-logo" src="assets/aoba-logo-hero.png" alt="AOBA">
+        <h2>Bring Nature Home.</h2>
+        <div class="sub">Pure. Natural. Authentic.</div>
+        <a href="#shop" class="btn btn-solid" data-scroll>Explore Products <span class="arw">&rarr;</span></a>
+      </div>
+      <div class="site-foot">&copy; AOBA</div>
+    </section>
+
+  </main>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script>
+    if (typeof gsap === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>');
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"><\/script>');
+    }
+    if (typeof Lenis === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.1.18/lenis.min.js"><\/script>');
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

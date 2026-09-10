@@ -1,0 +1,19 @@
+{
+  "name": "aoba-brand-experience",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --port 3000",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18",
+    "pngjs": "^7.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}
