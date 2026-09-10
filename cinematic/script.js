@@ -588,8 +588,8 @@
           trigger: sec, start: 'top top', end: '+=400%',
           pin: vp, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true,
           onUpdate: function (self) {
-            sec.classList.toggle('is-split', self.progress > 0.55);
-            sec.classList.toggle('turmeric-lit', self.progress > 0.72);
+            sec.classList.toggle('is-split', self.progress > 0.40);
+            sec.classList.toggle('turmeric-lit', self.progress > 0.74);
           }
         }
       });
@@ -607,31 +607,30 @@
 
       // "From earth's gold."
       tl.fromTo(line, { opacity: 0, y: 24, filter: 'blur(6px)' },
-        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.05 }, 0.3)
-        .to(line, { opacity: 0, y: -18, filter: 'blur(6px)', duration: 0.05 }, 0.44);
+        { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.05 }, 0.26)
+        .to(line, { opacity: 0, y: -18, filter: 'blur(6px)', duration: 0.05 }, 0.4);
 
-      // reveal
-      tl.to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.46);
-
-      // 0.6 - 1 : packet parks to the left, golden particles fill screen -> gold bg -> clear
+      // 0.44 - 0.62 : packet glides to the left FIRST — then the reveal fades in already parked right
       var parkX = function () { return mqMobile.matches ? 0 : -vw() * 0.30; };
-      var parkY = function () { return mqMobile.matches ? -vh() * 0.17 : -vh() * 0.02; };
-      tl.to(packet, { x: parkX, y: parkY, rotation: -6, scale: mqMobile.matches ? 0.7 : 0.8, duration: 0.22, ease: 'power2.inOut' }, 0.6)
-        .to(shadow, { x: parkX, opacity: 0.24, duration: 0.22 }, 0.6);
+      var parkY = function () { return mqMobile.matches ? -vh() * 0.17 : -vh() * 0.015; };
+      tl.to(packet, { x: parkX, y: parkY, rotation: -6, scale: mqMobile.matches ? 0.7 : 0.8, duration: 0.18, ease: 'power2.inOut' }, 0.44)
+        .to(shadow, { x: parkX, y: function () { return vh() * (mqMobile.matches ? 0.13 : 0.23); }, scale: 0.9, opacity: 0.26, duration: 0.18, ease: 'power2.inOut' }, 0.44)
+        .to(reveal, { opacity: 1, y: 0, duration: 0.1, ease: 'power3.out' }, 0.58);
 
+      // 0.66 - 1 : golden particles sweep up, gold light fills the frame, then it all clears for Cashew
       var r = seed(42);
       fill.forEach(function (b, i) {
         var x = (r() - 0.5) * 1.1, sc = 0.6 + r() * 1.8;
         gsap.set(b, { xPercent: -50, yPercent: -50 });
         tl.fromTo(b,
           { x: function () { return vw() * x; }, y: function () { return vh() * (0.8 + r() * 0.5); }, scale: sc, opacity: 0, rotation: r() * 360 },
-          { y: function () { return -vh() * (0.8 + r() * 0.6); }, opacity: 0.95, duration: 0.28, ease: 'power1.in' }, 0.62 + (i / fill.length) * 0.14)
-          .to(b, { opacity: 0, duration: 0.1 }, 0.9 + (i / fill.length) * 0.06);
+          { y: function () { return -vh() * (0.8 + r() * 0.6); }, opacity: 0.95, duration: 0.28, ease: 'power1.in' }, 0.66 + (i / fill.length) * 0.13)
+          .to(b, { opacity: 0, duration: 0.1 }, 0.92 + (i / fill.length) * 0.05);
       });
-      tl.to(bgAlt, { opacity: 1, duration: 0.16 }, 0.66)
-        .to(bgAlt, { opacity: 0, duration: 0.16 }, 0.9)
-        .to([packet, shadow], { opacity: 0, duration: 0.1 }, 0.9)
-        .to(reveal, { opacity: 0, y: -20, duration: 0.12 }, 0.9);
+      tl.to(bgAlt, { opacity: 1, duration: 0.16 }, 0.7)
+        .to(bgAlt, { opacity: 0, duration: 0.16 }, 0.92)
+        .to([packet, shadow], { opacity: 0, duration: 0.1 }, 0.92)
+        .to(reveal, { opacity: 0, y: -20, duration: 0.12 }, 0.92);
     })();
 
     /* ==================================================================

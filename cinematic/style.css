@@ -339,7 +339,7 @@ body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.5s; }
 .act-turmeric.turmeric-lit .act-viewport::after { background: linear-gradient(to top, rgba(120,80,20,0.35) 0%, transparent 44%); }
 
 /* ---- Split reveal: the packet parks to the left, the story copy sits in the right column ---- */
-.act-reveal-wrap { align-items: center; padding-bottom: 0; }
+.act-reveal-wrap { align-items: center; padding-bottom: 0; transition: padding 0.5s var(--ease-out); }
 
 @media (min-width: 761px) {
   .act.is-split .act-reveal-wrap {
