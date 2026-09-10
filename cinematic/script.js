@@ -573,21 +573,106 @@
     })();
 
     /* ==================================================================
-       09 — FARM PARALLAX
+       09 — FARM PARALLAX JOURNEY
        ================================================================== */
-    $$('.farm-parallax').forEach(function (el) {
-      var sp = parseFloat(el.getAttribute('data-speed')) || 0.14;
-      gsap.fromTo(el, { yPercent: -sp * 60 }, {
-        yPercent: sp * 60, ease: 'none',
-        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
+    (function farmJourney() {
+      var farm = $('#farm');
+      var journey = $('.farm-journey', farm);
+      var stages = $$('.farm-stage', farm);
+      if (!journey || !stages.length) return;
+
+      /* --- sticky progress rail --- */
+      var LABELS = ['Farm', 'Harvest', 'Select', 'Process', 'Pack', 'Kitchen'];
+      var rail = doc.createElement('div');
+      rail.className = 'farm-rail';
+      rail.setAttribute('aria-hidden', 'true');
+      rail.innerHTML =
+        '<span class="fr-track"><span class="fr-fill"></span></span>' +
+        '<ol class="fr-list">' + LABELS.map(function (l) {
+          return '<li><i></i><b>' + l + '</b></li>';
+        }).join('') + '</ol>';
+      journey.appendChild(rail);
+      var fill = $('.fr-fill', rail);
+      var items = $$('.fr-list li', rail);
+
+      stages.forEach(function (stage, i) {
+        var bg = $('.farm-parallax', stage);
+        var wrap = $('.wrap', stage);
+        var num = $('.st-num', stage);
+        var title = $('.st-title', stage);
+        var desc = $('.st-desc', stage);
+
+        /* oversized ghost number */
+        var ghost = doc.createElement('div');
+        ghost.className = 'st-ghost';
+        ghost.setAttribute('aria-hidden', 'true');
+        ghost.textContent = (i < 9 ? '0' : '') + (i + 1);
+        stage.insertBefore(ghost, wrap);
+
+        /* wrap the title text so it can slide up out of a mask */
+        if (title && !title.firstElementChild) {
+          title.innerHTML = '<span>' + title.textContent + '</span>';
+        }
+        var titleInner = title && title.firstElementChild;
+
+        /* image — slow ken-burns push + drift */
+        if (bg) {
+          var sp = parseFloat(bg.getAttribute('data-speed')) || 0.12;
+          gsap.fromTo(bg,
+            { scale: 1.16, yPercent: -sp * 42 },
+            {
+              scale: 1, yPercent: sp * 42, ease: 'none',
+              scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: true }
+            });
+          gsap.fromTo(bg,
+            { clipPath: 'inset(14% 16% 14% 16%)' },
+            {
+              clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.out',
+              scrollTrigger: { trigger: stage, start: 'top 90%', end: 'top 38%', scrub: 0.6 }
+            });
+        }
+
+        /* ghost number drifts against the scroll */
+        gsap.fromTo(ghost,
+          { yPercent: 26, opacity: 0 },
+          {
+            yPercent: -26, opacity: 1, ease: 'none',
+            scrollTrigger: { trigger: stage, start: 'top bottom', end: 'bottom top', scrub: true }
+          });
+
+        /* content reveal */
+        var rvl = gsap.timeline({ scrollTrigger: { trigger: wrap, start: 'top 74%' } });
+        if (num) rvl.from(num, { opacity: 0, x: -26, duration: 0.6, ease: 'power2.out' });
+        if (titleInner) rvl.from(titleInner, { yPercent: 118, duration: 0.9, ease: 'power4.out' }, '-=0.32');
+        if (desc) rvl.from(desc, { opacity: 0, y: 26, duration: 0.7, ease: 'power2.out' }, '-=0.52');
+
+        /* mark the active dot on the rail */
+        ScrollTrigger.create({
+          trigger: stage, start: 'top 55%', end: 'bottom 55%',
+          onToggle: function (self) { items[i].classList.toggle('is-on', self.isActive); }
+        });
+
+        /* flip the rail to its dark palette over the cream final stage */
+        if (stage.getAttribute('data-stage') === '5') {
+          ScrollTrigger.create({
+            trigger: stage, start: 'top 62%', end: 'bottom top',
+            onToggle: function (self) { rail.classList.toggle('on-light', self.isActive); }
+          });
+        }
       });
-    });
-    $$('.farm-stage .wrap').forEach(function (w) {
-      gsap.from(w.children, {
-        opacity: 0, y: 40, duration: 1, stagger: 0.12, ease: 'power3.out',
-        scrollTrigger: { trigger: w, start: 'top 78%' }
+
+      /* rail fill tracks progress through the whole journey */
+      gsap.fromTo(fill, { height: '0%' }, {
+        height: '100%', ease: 'none',
+        scrollTrigger: { trigger: journey, start: 'top 62%', end: 'bottom 78%', scrub: true }
       });
-    });
+
+      /* rail only visible while inside the journey */
+      ScrollTrigger.create({
+        trigger: journey, start: 'top 42%', end: 'bottom 58%',
+        onToggle: function (self) { rail.classList.toggle('is-vis', self.isActive); }
+      });
+    })();
 
     /* ==================================================================
        10 — HORIZONTAL STORYTELLING

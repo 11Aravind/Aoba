@@ -394,19 +394,92 @@ body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.5s; }
 }
 .farm-stage .wrap { position: relative; z-index: 3; }
 .farm-stage .st-num {
+  display: inline-flex; align-items: center; gap: 12px;
   font-family: var(--serif); font-size: clamp(0.8rem, 1.4vw, 1rem); letter-spacing: 0.3em;
   color: var(--gold); text-transform: uppercase;
 }
+.farm-stage .st-num::before {
+  content: ''; display: inline-block; height: 1px; width: clamp(24px, 4vw, 56px);
+  background: currentColor; opacity: 0.8;
+}
 .farm-stage .st-title {
   font-family: var(--serif); font-weight: 600;
-  font-size: clamp(2.6rem, 10vw, 7rem); line-height: 1; margin: 8px 0 16px;
+  font-size: clamp(2.6rem, 10vw, 7rem); line-height: 1.04; margin: 8px 0 16px;
+  overflow: hidden; padding-bottom: 0.06em;
 }
+.farm-stage .st-title > span { display: block; will-change: transform; }
 .farm-stage .st-desc { max-width: 40ch; color: var(--paper-dim); font-size: clamp(0.92rem, 1.6vw, 1.08rem); }
 .farm-parallax {
   position: absolute; inset: -12% 0; z-index: 1; will-change: transform;
   background-size: cover; background-position: center;
 }
 .farm-tint { position: absolute; inset: 0; z-index: 2; }
+
+/* Oversized ghost stage number */
+.farm-stage .st-ghost {
+  position: absolute; z-index: 2; top: 50%; right: clamp(-24px, 2vw, 64px);
+  transform: translateY(-50%);
+  font-family: var(--serif); font-weight: 700; line-height: 0.72; white-space: nowrap;
+  font-size: clamp(10rem, 34vw, 32rem);
+  color: transparent; -webkit-text-stroke: 1.4px rgba(244, 237, 224, 0.18);
+  pointer-events: none; user-select: none;
+}
+.farm-stage[data-stage="4"] .st-ghost { -webkit-text-stroke-color: rgba(244, 237, 224, 0.24); }
+.farm-stage[data-stage="5"] .st-ghost { -webkit-text-stroke-color: rgba(24, 34, 25, 0.16); }
+
+/* Sticky journey progress rail */
+.farm-rail {
+  position: fixed; left: clamp(16px, 3vw, 40px); top: 50%; transform: translateY(-50%);
+  z-index: 90; display: flex; align-items: stretch; gap: 13px;
+  opacity: 0; pointer-events: none; transition: opacity 0.55s var(--ease-out);
+}
+.farm-rail.is-vis { opacity: 1; }
+.farm-rail .fr-track {
+  position: relative; width: 2px; border-radius: 2px; min-height: 220px;
+  background: rgba(244, 237, 224, 0.16);
+}
+.farm-rail .fr-fill {
+  position: absolute; inset: 0 0 auto 0; height: 0; border-radius: 2px;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
+}
+.farm-rail .fr-list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.farm-rail .fr-list li {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(244, 237, 224, 0.38); transition: color 0.4s ease;
+}
+.farm-rail .fr-list li b {
+  font-weight: 600; opacity: 0; transform: translateX(-5px);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
+}
+.farm-rail .fr-list li i {
+  width: 6px; height: 6px; border-radius: 50%; flex: none;
+  background: rgba(244, 237, 224, 0.32);
+  transition: transform 0.4s var(--ease-out), background 0.4s ease, box-shadow 0.4s ease;
+}
+.farm-rail .fr-list li.is-on { color: var(--paper); }
+.farm-rail .fr-list li.is-on b { opacity: 1; transform: none; }
+.farm-rail .fr-list li.is-on i {
+  background: var(--gold-bright); transform: scale(1.6);
+  box-shadow: 0 0 0 4px rgba(230, 192, 121, 0.16);
+}
+/* dark variant while the cream "Your Kitchen" stage is in view */
+.farm-rail.on-light .fr-track { background: rgba(24, 34, 25, 0.16); }
+.farm-rail.on-light .fr-list li { color: rgba(24, 34, 25, 0.4); }
+.farm-rail.on-light .fr-list li.is-on { color: var(--ink); }
+.farm-rail.on-light .fr-list li i { background: rgba(24, 34, 25, 0.26); }
+
+@media (min-width: 1080px) {
+  .farm-journey .wrap { padding-left: 124px; }
+}
+@media (max-width: 1079px) {
+  .farm-rail { display: none; }
+  .farm-stage .st-ghost { font-size: clamp(8rem, 46vw, 18rem); -webkit-text-stroke-width: 1px; }
+}
 
 .farm-stage[data-stage="0"] .farm-tint { background: linear-gradient(180deg, rgba(6,18,10,0.62), rgba(10,36,22,0.78)); }
 .farm-stage[data-stage="1"] .farm-tint { background: linear-gradient(180deg, rgba(12,32,16,0.55), rgba(24,44,18,0.72)); }
@@ -417,6 +490,30 @@ body.menu-open .mobile-menu a:nth-child(5) { transition-delay: 0.5s; }
 .farm-stage[data-stage="5"] { background: var(--cream); color: var(--ink); }
 .farm-stage[data-stage="5"] .farm-tint { background: linear-gradient(180deg, rgba(247,240,225,0.4), rgba(247,240,225,0.75)); }
 .farm-stage[data-stage="5"] .st-desc { color: var(--ink-soft); }
+
+/* soft edge vignettes so stacked stages melt together instead of hard-cutting */
+.farm-stage[data-stage="0"]::before,
+.farm-stage[data-stage="1"]::before,
+.farm-stage[data-stage="2"]::before,
+.farm-stage[data-stage="3"]::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 25%; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(4,12,8,0.62), transparent);
+}
+.farm-stage[data-stage="0"]::after,
+.farm-stage[data-stage="1"]::after,
+.farm-stage[data-stage="2"]::after,
+.farm-stage[data-stage="3"]::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 30%; z-index: 2; pointer-events: none;
+  background: linear-gradient(to top, rgba(4,12,8,0.72), transparent);
+}
+.farm-stage[data-stage="4"]::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 25%; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(40,28,14,0.7), transparent);
+}
+.farm-stage[data-stage="4"]::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 38%; z-index: 2; pointer-events: none;
+  background: linear-gradient(to top, var(--cream), transparent);
+}
 
 /* ==========================================================================
    10 — Horizontal storytelling
